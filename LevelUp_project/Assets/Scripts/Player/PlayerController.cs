@@ -5,8 +5,6 @@ namespace player
 {
 	public class PlayerController : MonoBehaviour
 	{
-		public enum CameraMode { SideScroller, Isometric }
-
 		[SerializeField]
 		private float moveSpeed = 5f;
 		[SerializeField]
@@ -24,7 +22,7 @@ namespace player
 		private bool isGrounded;
 		private Rigidbody rb;
 		private InputActions input;
-		private ModeSwitcher modeSwitcher;
+		private CameraManager cameraManager;
 		
 		void Awake()
 		{
@@ -35,13 +33,25 @@ namespace player
 		private void Start()
 		{
 			rb = GetComponent<Rigidbody>();
-			modeSwitcher = GetComponent<ModeSwitcher>();
-			SwitchToMode(currentMode); // Init constraints
+			cameraManager = FindFirstObjectByType<CameraManager>();
+			SwitchToMode(currentMode);
 		}
 
 		void Update()
 		{
 			var inputVector = input.Player.Move.ReadValue<Vector2>();
+			ApplyMovement(inputVector);
+
+			isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
+			var jump = input.Player.Jump.WasPressedThisFrame();
+			if (jump && isGrounded)
+			{
+				ApplyJump();
+			}
+		}
+
+		private void ApplyMovement(Vector2 inputVector)
+		{
 			var moveVector = new Vector3(inputVector.x, 0f, inputVector.y);
 
 			if (currentMode == CameraMode.SideScroller)
@@ -56,14 +66,12 @@ namespace player
 				Vector3 move = isoInput * moveSpeed;
 				rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
 			}
+		}
 
-			isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
-			var jump = input.Player.Jump.WasPressedThisFrame();
-			if (jump && isGrounded)
-			{
-				rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z); // Clear Y before jump
-				rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-			}
+		private void ApplyJump()
+		{
+			rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+			rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 		}
 
 		public void SwitchToMode(CameraMode mode)
@@ -79,7 +87,7 @@ namespace player
 				rb.constraints = RigidbodyConstraints.FreezeRotation;
 			}
 
-			modeSwitcher.ToggleMode(currentMode);
+			cameraManager.SwitchCameraMode(currentMode);
 		}
 
 		public void SwitchCameraMode()
