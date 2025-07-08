@@ -5,25 +5,43 @@ namespace player
 {
 	public class PlayerController : MonoBehaviour
 	{
-		[SerializeField]
-		private float moveSpeed = 5f;
-		[SerializeField]
-		private CameraMode currentMode = CameraMode.SideScroller;
 
-		[SerializeField]
+
+        private Rigidbody rb;
+        private InputActions input;
+        private CameraManager cameraManager;
+
+		[Header("Player Settings")]
+        [SerializeField]
+        private float moveSpeed = 5f;
+        [SerializeField]
+        private CameraMode currentMode = CameraMode.SideScroller;
+        [SerializeField]
 		private float jumpForce = 7f;
+
+		[Header("GroundCheck")]
 		[SerializeField]
 		private Transform groundCheck;
 		[SerializeField]
 		private float groundCheckRadius = 0.3f;
 		[SerializeField]
 		private LayerMask groundLayer;
-
 		private bool isGrounded;
-		private Rigidbody rb;
-		private InputActions input;
-		private CameraManager cameraManager;
-		
+
+
+        //Climb through vines
+        [Header("VineCheck")]
+		[SerializeField]
+		private Transform vineCheck;
+		[SerializeField]
+		private float vineCheckRadius;
+		[SerializeField]
+		private LayerMask vineLayer;
+
+		private bool _isOnVine;
+
+
+
 		void Awake()
 		{
 			input = new InputActions();
@@ -43,6 +61,8 @@ namespace player
 			ApplyMovement(inputVector);
 
 			isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
+            _isOnVine = Physics.CheckSphere(vineCheck.position, vineCheckRadius, vineLayer);
+
 			var jump = input.Player.Jump.WasPressedThisFrame();
 			if (jump && isGrounded)
 			{
@@ -62,9 +82,21 @@ namespace player
 			else if (currentMode == CameraMode.Isometric)
 			{
 				// Rotate input for isometric movement
-				Vector3 isoInput = Quaternion.Euler(0, -45, 0) * moveVector.normalized;
-				Vector3 move = isoInput * moveSpeed;
-				rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
+                    Vector3 isoInput = Quaternion.Euler(0, -45, 0) * moveVector.normalized;
+                    Vector3 move = isoInput * moveSpeed;
+
+				if (!_isOnVine)
+				{
+					rb.useGravity = true;
+                    rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
+                }
+				else
+				{
+					rb.useGravity = false;
+					rb.linearVelocity = new Vector3(0f, -move.x, 0f);
+				}
+
+                    
 			}
 		}
 
