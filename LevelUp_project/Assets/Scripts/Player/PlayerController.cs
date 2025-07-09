@@ -72,8 +72,7 @@ namespace player
 			ApplyMovement(inputVector);
 
 			isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
-			// _isOnVine = Physics.CheckSphere(vineCheck.position, vineCheckRadius, vineLayer);
-			_isOnVine = false;
+			_isOnVine = Physics.CheckSphere(vineCheck.position, vineCheckRadius, vineLayer);
 
 			var jump = input.Player.Jump.WasPressedThisFrame();
 			if (jump && isGrounded)
