@@ -11,14 +11,15 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: 6115e10699074a84db413d5a994a3fe7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _ALPHATEST_ON
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2450
   stringTagMap:
-    RenderType: Opaque
+    RenderType: TransparentCutout
   disabledShaderPasses:
   - MOTIONVECTORS
   m_LockedProperties: 
@@ -39,24 +40,25 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaClip: 0
-    - _AlphaToMask: 0
+    - Grow_: 0
+    - _AlphaClip: 1
+    - _AlphaToMask: 1
     - _Blend: 0
     - _CastShadows: 1
-    - _Clip: 0.9
+    - _Clip: 0.98
     - _Cull: 2
     - _DstBlend: 0
-    - _Grow: 0.512
+    - _Grow: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Scale: -2.09
+    - _Scale: 0.4
     - _SrcBlend: 1
     - _Surface: 0
     - _ZTest: 4
     - _ZWrite: 1
     - _ZWriteControl: 0
     m_Colors:
-    - _BaseColor: {r: 0, g: 0.764151, b: 0.20834956, a: 0}
+    - _BaseColor: {r: 0, g: 0.488, b: 0.13263586, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &8875037226126896492
