@@ -82,21 +82,20 @@ namespace player
 			else if (currentMode == CameraMode.Isometric)
 			{
 				// Rotate input for isometric movement
-                    Vector3 isoInput = Quaternion.Euler(0, -45, 0) * moveVector.normalized;
-                    Vector3 move = isoInput * moveSpeed;
+				Vector3 isoInput = Quaternion.Euler(0, -45, 0) * moveVector.normalized;
+				isoInput = -isoInput; // Invertir controles
+				Vector3 move = isoInput * moveSpeed;
 
 				if (!_isOnVine)
 				{
 					rb.useGravity = true;
-                    rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
-                }
+					rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
+				}
 				else
 				{
 					rb.useGravity = false;
 					rb.linearVelocity = new Vector3(0f, -move.x, 0f);
 				}
-
-                    
 			}
 		}
 
