@@ -138,7 +138,7 @@ namespace player
 			Vector3 isoInput = Quaternion.Euler(0, -45, 0) * moveVector.normalized;
 			isoInput = -isoInput; // Invertir controles
 			var speed = GetMoveSpeed();
-			Vector3 move = isoInput * speed;
+			Vector3 move = isoInput * speed * Time.deltaTime;
 
 			if (!_isOnVine)
 			{
