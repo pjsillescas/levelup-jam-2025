@@ -6,23 +6,34 @@ namespace player
 {
 	public class PlayerController : MonoBehaviour
 	{
+		[Header("Player Settings")]
 		[SerializeField]
 		private float moveSpeed = 5f;
 		[SerializeField]
 		private CameraMode currentMode = CameraMode.SideScroller;
-
 		[SerializeField]
 		private float jumpForce = 7f;
 		[SerializeField, Range(0f, 1f)]
 		private float airControl = 1f;
 
+
+		[Header("GroundCheck")]
 		[SerializeField]
 		private Transform groundCheck;
 		[SerializeField]
 		private float groundCheckRadius = 0.3f;
 		[SerializeField]
 		private LayerMask groundLayer;
-		
+
+		[Header("VineCheck")]
+		[SerializeField]
+		private Transform vineCheck;
+		[SerializeField]
+		private float vineCheckRadius = 2f;
+		[SerializeField]
+		private LayerMask vineLayer;
+
+		[Header("Side Scroller Spline")]
 		[SerializeField]
 		private SplineContainer sideScrollerSpline;
 
@@ -30,9 +41,10 @@ namespace player
 		private Rigidbody rb;
 		private InputActions input;
 		private CameraManager cameraManager;
-		
 		private float splineLength;
 		private float distancePercentage = 0f;
+		private bool _isOnVine;
+
 
 		void Awake()
 		{
@@ -60,6 +72,9 @@ namespace player
 			ApplyMovement(inputVector);
 
 			isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
+			// _isOnVine = Physics.CheckSphere(vineCheck.position, vineCheckRadius, vineLayer);
+			_isOnVine = false;
+
 			var jump = input.Player.Jump.WasPressedThisFrame();
 			if (jump && isGrounded)
 			{
@@ -78,6 +93,12 @@ namespace player
 			}
 			else if (currentMode == CameraMode.Isometric)
 			{
+				/*
+				// Rotate input for isometric movement
+				Vector3 isoInput = Quaternion.Euler(0, -45, 0) * moveVector.normalized;
+				Vector3 move = isoInput * moveSpeed;
+				rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
+				*/
 				ApplyMovementIsometric(moveVector);
 			}
 		}
@@ -105,11 +126,30 @@ namespace player
 
 		private void ApplyMovementIsometric(Vector2 moveVector)
 		{
+			/*
 			// Rotate input for isometric movement
 			var speed = GetMoveSpeed();
 			Vector3 isoInput = Quaternion.Euler(0, -45, 0) * moveVector.normalized;
 			Vector3 move = -isoInput * speed;
 			rb.linearVelocity = move + new Vector3(0, rb.linearVelocity.y, 0);
+			*/
+
+			// Rotate input for isometric movement
+			Vector3 isoInput = Quaternion.Euler(0, -45, 0) * moveVector.normalized;
+			isoInput = -isoInput; // Invertir controles
+			var speed = GetMoveSpeed();
+			Vector3 move = isoInput * speed;
+
+			if (!_isOnVine)
+			{
+				rb.useGravity = true;
+				rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
+			}
+			else
+			{
+				rb.useGravity = false;
+				rb.linearVelocity = new Vector3(0f, -move.x, 0f);
+			}
 		}
 		private void ApplyJump()
 		{
