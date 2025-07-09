@@ -283,11 +283,13 @@ MonoBehaviour:
   moveSpeed: 5
   currentMode: 0
   jumpForce: 7
+  airControl: 0.43
   groundCheck: {fileID: 8156813940417558351}
   groundCheckRadius: 0.3
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  sideScrollerSpline: {fileID: 0}
 --- !u!1 &6641527768123909109
 GameObject:
   m_ObjectHideFlags: 0

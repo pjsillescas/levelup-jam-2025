@@ -13,6 +13,9 @@ namespace player
 
 		[SerializeField]
 		private float jumpForce = 7f;
+		[SerializeField, Range(0f, 1f)]
+		private float airControl = 1f;
+
 		[SerializeField]
 		private Transform groundCheck;
 		[SerializeField]
@@ -75,18 +78,22 @@ namespace player
 			}
 			else if (currentMode == CameraMode.Isometric)
 			{
-				// Rotate input for isometric movement
-				Vector3 isoInput = Quaternion.Euler(0, -45, 0) * moveVector.normalized;
-				Vector3 move = isoInput * moveSpeed;
-				rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
+				ApplyMovementIsometric(moveVector);
 			}
+		}
+
+		private float GetMoveSpeed()
+		{
+			var airControlFactor = (isGrounded) ? 1 : airControl;
+			return (moveSpeed) * airControlFactor;
 		}
 
 		private void ApplyMovementSideScroller(float inputX)
 		{
 			if (Mathf.Abs(inputX) < 0.1f) { return; }
 
-			var deltaMove = -Mathf.Sign(inputX) * moveSpeed * Time.deltaTime / splineLength;
+			var speed = GetMoveSpeed() / splineLength;
+			var deltaMove = -Mathf.Sign(inputX) * speed * Time.deltaTime ;
 			distancePercentage = Mathf.Clamp(distancePercentage + deltaMove, 0, 1);
 
 			Vector3 targetPosition = sideScrollerSpline.EvaluatePosition(distancePercentage);
@@ -96,6 +103,14 @@ namespace player
 			//rb.linearVelocity = new Vector3(direction.x * moveSpeed, rb.linearVelocity.y, direction.z * moveSpeed);
 		}
 
+		private void ApplyMovementIsometric(Vector2 moveVector)
+		{
+			// Rotate input for isometric movement
+			var speed = GetMoveSpeed();
+			Vector3 isoInput = Quaternion.Euler(0, -45, 0) * moveVector.normalized;
+			Vector3 move = -isoInput * speed;
+			rb.linearVelocity = move + new Vector3(0, rb.linearVelocity.y, 0);
+		}
 		private void ApplyJump()
 		{
 			rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
