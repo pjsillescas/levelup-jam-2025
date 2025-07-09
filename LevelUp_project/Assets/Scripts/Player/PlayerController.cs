@@ -6,18 +6,12 @@ namespace player
 {
 	public class PlayerController : MonoBehaviour
 	{
-
-
-        private Rigidbody rb;
-        private InputActions input;
-        private CameraManager cameraManager;
-
 		[Header("Player Settings")]
-        [SerializeField]
-        private float moveSpeed = 5f;
-        [SerializeField]
-        private CameraMode currentMode = CameraMode.SideScroller;
-        [SerializeField]
+		[SerializeField]
+		private float moveSpeed = 5f;
+		[SerializeField]
+		private CameraMode currentMode = CameraMode.SideScroller;
+		[SerializeField]
 		private float jumpForce = 7f;
 
 		[Header("GroundCheck")]
@@ -27,6 +21,27 @@ namespace player
 		private float groundCheckRadius = 0.3f;
 		[SerializeField]
 		private LayerMask groundLayer;
+
+		[Header("VineCheck")]
+		[SerializeField]
+		private Transform vineCheck;
+		[SerializeField]
+		private float vineCheckRadius = 2f;
+		[SerializeField]
+		private LayerMask vineLayer;
+
+		[Header("Side Scroller Spline")]
+		[SerializeField]
+		private SplineContainer sideScrollerSpline;
+
+		private Rigidbody rb;
+		private InputActions input;
+		private CameraManager cameraManager;
+		private float splineLength;
+		private float distancePercentage;
+		private bool isGrounded;
+		private bool _isOnVine;
+
 
 		void Awake()
 		{
@@ -54,7 +69,7 @@ namespace player
 			ApplyMovement(inputVector);
 
 			isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
-            _isOnVine = Physics.CheckSphere(vineCheck.position, vineCheckRadius, vineLayer);
+			_isOnVine = Physics.CheckSphere(vineCheck.position, vineCheckRadius, vineLayer);
 
 			var jump = input.Player.Jump.WasPressedThisFrame();
 			if (jump && isGrounded)
