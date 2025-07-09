@@ -1,5 +1,6 @@
 using input;
 using UnityEngine;
+using UnityEngine.Splines;
 
 namespace player
 {
@@ -26,21 +27,6 @@ namespace player
 		private float groundCheckRadius = 0.3f;
 		[SerializeField]
 		private LayerMask groundLayer;
-		private bool isGrounded;
-
-
-        //Climb through vines
-        [Header("VineCheck")]
-		[SerializeField]
-		private Transform vineCheck;
-		[SerializeField]
-		private float vineCheckRadius;
-		[SerializeField]
-		private LayerMask vineLayer;
-
-		private bool _isOnVine;
-
-
 
 		void Awake()
 		{
@@ -53,6 +39,13 @@ namespace player
 			rb = GetComponent<Rigidbody>();
 			cameraManager = FindFirstObjectByType<CameraManager>();
 			SwitchToMode(currentMode);
+
+			splineLength = sideScrollerSpline.CalculateLength();
+
+			if (currentMode == CameraMode.SideScroller)
+			{
+				ApplyMovementSideScroller(-0.1f);
+			}
 		}
 
 		void Update()
@@ -76,8 +69,8 @@ namespace player
 
 			if (currentMode == CameraMode.SideScroller)
 			{
-				moveVector.z = 0f; // No depth
-				rb.linearVelocity = new Vector3(moveVector.x * moveSpeed, rb.linearVelocity.y, 0f);
+				//rb.linearVelocity = new Vector3(moveVector.x * moveSpeed, rb.linearVelocity.y, 0f);
+				ApplyMovementSideScroller(moveVector.x);
 			}
 			else if (currentMode == CameraMode.Isometric)
 			{
@@ -97,6 +90,20 @@ namespace player
 					rb.linearVelocity = new Vector3(0f, -move.x, 0f);
 				}
 			}
+		}
+
+		private void ApplyMovementSideScroller(float inputX)
+		{
+			if (Mathf.Abs(inputX) < 0.1f) { return; }
+
+			var deltaMove = -Mathf.Sign(inputX) * moveSpeed * Time.deltaTime / splineLength;
+			distancePercentage = Mathf.Clamp(distancePercentage + deltaMove, 0, 1);
+
+			Vector3 targetPosition = sideScrollerSpline.EvaluatePosition(distancePercentage);
+			transform.position = new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
+			//Vector3 currentPosition = transform.position;
+			//var direction = targetPosition - currentPosition;
+			//rb.linearVelocity = new Vector3(direction.x * moveSpeed, rb.linearVelocity.y, direction.z * moveSpeed);
 		}
 
 		private void ApplyJump()
