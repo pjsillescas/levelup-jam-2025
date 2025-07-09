@@ -124,21 +124,13 @@ namespace player
 			//rb.linearVelocity = new Vector3(direction.x * moveSpeed, rb.linearVelocity.y, direction.z * moveSpeed);
 		}
 
-		private void ApplyMovementIsometric(Vector2 moveVector)
+		private void ApplyMovementIsometric(Vector3 moveVector)
 		{
-			/*
-			// Rotate input for isometric movement
-			var speed = GetMoveSpeed();
-			Vector3 isoInput = Quaternion.Euler(0, -45, 0) * moveVector.normalized;
-			Vector3 move = -isoInput * speed;
-			rb.linearVelocity = move + new Vector3(0, rb.linearVelocity.y, 0);
-			*/
-
 			// Rotate input for isometric movement
 			Vector3 isoInput = Quaternion.Euler(0, -45, 0) * moveVector.normalized;
 			isoInput = -isoInput; // Invertir controles
 			var speed = GetMoveSpeed();
-			Vector3 move = isoInput * speed * Time.deltaTime;
+			Vector3 move = isoInput * speed;
 
 			if (!_isOnVine)
 			{
