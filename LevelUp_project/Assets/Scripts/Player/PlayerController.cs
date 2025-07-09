@@ -1,5 +1,6 @@
 using input;
 using UnityEngine;
+using UnityEngine.Splines;
 
 namespace player
 {
@@ -18,12 +19,18 @@ namespace player
 		private float groundCheckRadius = 0.3f;
 		[SerializeField]
 		private LayerMask groundLayer;
+		
+		[SerializeField]
+		private SplineContainer sideScrollerSpline;
 
 		private bool isGrounded;
 		private Rigidbody rb;
 		private InputActions input;
 		private CameraManager cameraManager;
 		
+		private float splineLength;
+		private float distancePercentage = 0f;
+
 		void Awake()
 		{
 			input = new InputActions();
@@ -35,6 +42,13 @@ namespace player
 			rb = GetComponent<Rigidbody>();
 			cameraManager = FindFirstObjectByType<CameraManager>();
 			SwitchToMode(currentMode);
+
+			splineLength = sideScrollerSpline.CalculateLength();
+
+			if (currentMode == CameraMode.SideScroller)
+			{
+				ApplyMovementSideScroller(-0.1f);
+			}
 		}
 
 		void Update()
@@ -56,8 +70,8 @@ namespace player
 
 			if (currentMode == CameraMode.SideScroller)
 			{
-				moveVector.z = 0f; // No depth
-				rb.linearVelocity = new Vector3(moveVector.x * moveSpeed, rb.linearVelocity.y, 0f);
+				//rb.linearVelocity = new Vector3(moveVector.x * moveSpeed, rb.linearVelocity.y, 0f);
+				ApplyMovementSideScroller(moveVector.x);
 			}
 			else if (currentMode == CameraMode.Isometric)
 			{
@@ -66,6 +80,20 @@ namespace player
 				Vector3 move = isoInput * moveSpeed;
 				rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
 			}
+		}
+
+		private void ApplyMovementSideScroller(float inputX)
+		{
+			if (Mathf.Abs(inputX) < 0.1f) { return; }
+
+			var deltaMove = -Mathf.Sign(inputX) * moveSpeed * Time.deltaTime / splineLength;
+			distancePercentage = Mathf.Clamp(distancePercentage + deltaMove, 0, 1);
+
+			Vector3 targetPosition = sideScrollerSpline.EvaluatePosition(distancePercentage);
+			transform.position = new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
+			//Vector3 currentPosition = transform.position;
+			//var direction = targetPosition - currentPosition;
+			//rb.linearVelocity = new Vector3(direction.x * moveSpeed, rb.linearVelocity.y, direction.z * moveSpeed);
 		}
 
 		private void ApplyJump()
