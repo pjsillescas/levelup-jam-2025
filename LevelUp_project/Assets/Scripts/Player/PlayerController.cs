@@ -13,6 +13,9 @@ namespace player
 		private CameraMode currentMode = CameraMode.SideScroller;
 		[SerializeField]
 		private float jumpForce = 7f;
+		[SerializeField, Range(0f, 1f)]
+		private float airControl = 1f;
+
 
 		[Header("GroundCheck")]
 		[SerializeField]
@@ -34,12 +37,12 @@ namespace player
 		[SerializeField]
 		private SplineContainer sideScrollerSpline;
 
+		private bool isGrounded;
 		private Rigidbody rb;
 		private InputActions input;
 		private CameraManager cameraManager;
 		private float splineLength;
-		private float distancePercentage;
-		private bool isGrounded;
+		private float distancePercentage = 0f;
 		private bool _isOnVine;
 
 
@@ -89,29 +92,28 @@ namespace player
 			}
 			else if (currentMode == CameraMode.Isometric)
 			{
+				/*
 				// Rotate input for isometric movement
 				Vector3 isoInput = Quaternion.Euler(0, -45, 0) * moveVector.normalized;
-				isoInput = -isoInput; // Invertir controles
 				Vector3 move = isoInput * moveSpeed;
-
-				if (!_isOnVine)
-				{
-					rb.useGravity = true;
-					rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
-				}
-				else
-				{
-					rb.useGravity = false;
-					rb.linearVelocity = new Vector3(0f, -move.x, 0f);
-				}
+				rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
+				*/
+				ApplyMovementIsometric(moveVector);
 			}
+		}
+
+		private float GetMoveSpeed()
+		{
+			var airControlFactor = (isGrounded) ? 1 : airControl;
+			return (moveSpeed) * airControlFactor;
 		}
 
 		private void ApplyMovementSideScroller(float inputX)
 		{
 			if (Mathf.Abs(inputX) < 0.1f) { return; }
 
-			var deltaMove = -Mathf.Sign(inputX) * moveSpeed * Time.deltaTime / splineLength;
+			var speed = GetMoveSpeed() / splineLength;
+			var deltaMove = -Mathf.Sign(inputX) * speed * Time.deltaTime ;
 			distancePercentage = Mathf.Clamp(distancePercentage + deltaMove, 0, 1);
 
 			Vector3 targetPosition = sideScrollerSpline.EvaluatePosition(distancePercentage);
@@ -121,6 +123,25 @@ namespace player
 			//rb.linearVelocity = new Vector3(direction.x * moveSpeed, rb.linearVelocity.y, direction.z * moveSpeed);
 		}
 
+		private void ApplyMovementIsometric(Vector3 moveVector)
+		{
+			// Rotate input for isometric movement
+			Vector3 isoInput = Quaternion.Euler(0, -45, 0) * moveVector.normalized;
+			isoInput = -isoInput; // Invertir controles
+			var speed = GetMoveSpeed();
+			Vector3 move = isoInput * speed;
+
+			if (!_isOnVine)
+			{
+				rb.useGravity = true;
+				rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
+			}
+			else
+			{
+				rb.useGravity = false;
+				rb.linearVelocity = new Vector3(0f, -move.x, 0f);
+			}
+		}
 		private void ApplyJump()
 		{
 			rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
