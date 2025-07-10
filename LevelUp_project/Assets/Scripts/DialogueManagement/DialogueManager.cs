@@ -29,6 +29,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] GameObject dialoguePanel; //Panel del diálogo que contiene el texto del jugador y del PNJ
     [Tooltip("Velocidad del texto (1 = lento, 10 = rápido)")]
     [SerializeField] [Range(1f, 10f)] float textSpeed = 5f; //Velocidad del texto
+    [Tooltip("Tiempo máximo (en segundos) hasta que pase automáticamente al siguiente diálogo")]
+    [SerializeField] float maxTimeBetweenDialogues = 2.5f; //Tiempo máximo entre diálogos
     private float calculatedSpeed;
     //!Si queremos añadir interlocutores, crear la lista de miniaturas de cada interlocutor
 
@@ -60,6 +62,8 @@ public class DialogueManager : MonoBehaviour
                 Text.text = textToFill;
                 yield break; //Salir de la corroutine para no seguir escribiendo
             }
+            if(dialoguePanel.activeSelf == false)
+                ShowDialoguePanel(); //Asegurarse de que el panel de diálogo está visible
 
             yield return new WaitForSeconds(txtSpeed);
 
@@ -90,19 +94,21 @@ public class DialogueManager : MonoBehaviour
     //Método para ejecutar toda una secuencia de diálogo
     IEnumerator ExecuteDialogueSequence(DialogueSequenceSO dialogueSequence)
     {
+        yield return new WaitUntil(() => dialoguePanel.activeSelf == false); //Esperar a que el panel de diálogo esté oculto antes de iniciar la secuencia
         ShowDialoguePanel();
         for (int i = 0; i < dialogueSequence.dialogues.Count; i++)
         {
             Dialogue dialogue = dialogueSequence.dialogues[i];
             //Escribir el texto del diálogo
-            calculatedSpeed = 1/(textSpeed*30f); //Reiniciar la velocidad del texto
+            calculatedSpeed = 1/(textSpeed*20f); //Reiniciar la velocidad del texto
             WriteText(text, dialogue.text, calculatedSpeed); 
             //Esperar a que el texto se haya escrito completamente
             yield return new WaitUntil(() => text.text == dialogue.text);
             //Al acabar esperar un tiempo antes de continuar con el siguiente diálogo
             yield return new WaitForSeconds(0.5f);
+            float time = Time.time + maxTimeBetweenDialogues; //Tiempo máximo para esperar antes de continuar
             //Esperar a pulsar una tecla para continuar
-            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0));
+            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0) || time < Time.time);
         }
         
         HideDialoguePanel(); //Ocultar el panel de diálogo al finalizar la secuencia
@@ -115,10 +121,7 @@ public class DialogueManager : MonoBehaviour
     //Método para iniciar una secuencia de diálogo
     public void StartDialogueSequence(DialogueSequenceSO dialogueSequence)
     {
-        if (text.transform.parent.gameObject.activeSelf == false)
-        {
-            text.transform.parent.gameObject.SetActive(true);
-        }
+
 
         //!Aquí se podría añadir la gestión de la miniatura del interlocutor
 

@@ -695,7 +695,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 69.7
+  m_fontSize: 34.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -914,7 +914,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 31.35
+  m_fontSize: 18
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1087,7 +1087,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 31.35
+  m_fontSize: 18
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1395,7 +1395,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48
+  m_fontSize: 23.85
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1529,7 +1529,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 785062803009634541, guid: 427b22a85979c014fa99de64225aedce, type: 3}
       propertyPath: m_fontSize
-      value: 29
+      value: 14.4
       objectReference: {fileID: 0}
     - target: {fileID: 785062803009634541, guid: 427b22a85979c014fa99de64225aedce, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
@@ -1538,19 +1538,19 @@ PrefabInstance:
     - target: {fileID: 3482325217584918161, guid: 427b22a85979c014fa99de64225aedce, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 4b08cd3e62fcb5d41b51497fb0e38e7b, type: 3}
+      objectReference: {fileID: 21300000, guid: 590c1647fecf93144a0ed01c8a132a13, type: 3}
     - target: {fileID: 7592203926739451842, guid: 427b22a85979c014fa99de64225aedce, type: 3}
       propertyPath: text
       value: 
       objectReference: {fileID: 2276107209151092880}
     - target: {fileID: 7592203926739451842, guid: 427b22a85979c014fa99de64225aedce, type: 3}
       propertyPath: textSpeed
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7640656002408564659, guid: 427b22a85979c014fa99de64225aedce, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 666d7999268a4484da80d2e129f8e743, type: 3}
+      objectReference: {fileID: 21300000, guid: f84c756c0dc996f45a1d9d2b42336ab2, type: 3}
     - target: {fileID: 7968244115185775331, guid: 427b22a85979c014fa99de64225aedce, type: 3}
       propertyPath: m_Name
       value: DialogueManager
@@ -1674,7 +1674,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6611668403237680830, guid: ac4b1132e4033c342b736d1ebfd76321, type: 3}
       propertyPath: m_fontSize
-      value: 52.75
+      value: 26.2
       objectReference: {fileID: 0}
     - target: {fileID: 6611668403237680830, guid: ac4b1132e4033c342b736d1ebfd76321, type: 3}
       propertyPath: m_HorizontalAlignment
@@ -1879,7 +1879,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6611668403237680830, guid: ac4b1132e4033c342b736d1ebfd76321, type: 3}
       propertyPath: m_fontSize
-      value: 50.75
+      value: 25.25
       objectReference: {fileID: 0}
     - target: {fileID: 6611668403237680830, guid: ac4b1132e4033c342b736d1ebfd76321, type: 3}
       propertyPath: m_HorizontalAlignment
