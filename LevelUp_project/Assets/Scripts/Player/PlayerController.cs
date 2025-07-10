@@ -8,20 +8,20 @@ namespace player
 	{
 		[Header("Player Settings")]
 		[SerializeField]
-		private float moveSpeed = 5f;
+		private float moveSpeed = 10f;
 		[SerializeField]
 		private CameraMode currentMode = CameraMode.SideScroller;
 		[SerializeField]
 		private float jumpForce = 7f;
 		[SerializeField, Range(0f, 1f)]
-		private float airControl = 1f;
+		private float airControl = 0.43f;
 
 
 		[Header("GroundCheck")]
 		[SerializeField]
 		private Transform groundCheck;
 		[SerializeField]
-		private float groundCheckRadius = 0.3f;
+		private float groundCheckRadius = 0.2f;
 		[SerializeField]
 		private LayerMask groundLayer;
 
@@ -44,7 +44,7 @@ namespace player
 		private float splineLength;
 		private float distancePercentage = 0f;
 		private bool _isOnVine;
-
+		private Quaternion savedRotation;
 
 		void Awake()
 		{
@@ -58,7 +58,7 @@ namespace player
 			cameraManager = FindFirstObjectByType<CameraManager>();
 			SwitchToMode(currentMode);
 
-			splineLength = sideScrollerSpline.CalculateLength();
+			splineLength = (sideScrollerSpline != null) ? sideScrollerSpline.CalculateLength() : 0.1f;
 
 			if (currentMode == CameraMode.SideScroller)
 			{
@@ -169,6 +169,17 @@ namespace player
 			currentMode = currentMode == CameraMode.SideScroller ? CameraMode.Isometric : CameraMode.SideScroller;
 
 			SwitchToMode(currentMode);
+		}
+
+		public void SaveRotation()
+		{
+			savedRotation = transform.rotation;
+		}
+
+		public void RestoreRotation()
+		{
+			//transform.rotation = savedRotation;
+			transform.rotation = Quaternion.identity;
 		}
 	}
 }

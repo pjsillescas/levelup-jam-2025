@@ -40,6 +40,10 @@ public class CyntiaAnimation : MonoBehaviour
 		var inputVector = input.Player.Move.ReadValue<Vector2>();
 
 		animator.SetBool("IsWalking", inputVector.sqrMagnitude > 0);
+		if(Mathf.Abs(inputVector.x) > 0.1f && Mathf.Abs(inputVector.y) > 0.1f)
+		{
+			inputVector.y = 0f;
+		}
 
 		if (inputVector.x > DIRECTION_THRESHOLD && currentDirection != WalkDirection.right)
 		{
