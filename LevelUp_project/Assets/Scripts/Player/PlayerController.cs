@@ -50,6 +50,7 @@ namespace player
 		{
 			input = new InputActions();
 			input.Enable();
+			savedRotation = transform.rotation;
 		}
 
 		private void Start()
@@ -70,6 +71,28 @@ namespace player
 			if (currentMode == CameraMode.SideScroller)
 			{
 				ApplyMovementSideScroller(-0.1f);
+			}
+
+			Platform.OnPlayerRide += OnPlayerRidePlatform;
+			Platform.OnPlayerLeave += OnPlayerLeavePlatform;
+		}
+
+		private void OnDestroy()
+		{
+			Platform.OnPlayerRide -= OnPlayerRidePlatform;
+			Platform.OnPlayerLeave -= OnPlayerLeavePlatform;
+		}
+
+		private void OnPlayerRidePlatform(object sender, Platform leftPlatform)
+		{
+			;
+		}
+		
+		private void OnPlayerLeavePlatform(object sender, Platform leftPlatform)
+		{
+			if(leftPlatform.CompareTag("waterlily"))
+			{
+				RestoreRotation();
 			}
 		}
 
@@ -178,15 +201,11 @@ namespace player
 			SwitchToMode(currentMode);
 		}
 
-		public void SaveRotation()
-		{
-			savedRotation = transform.rotation;
-		}
-
 		public void RestoreRotation()
 		{
-			//transform.rotation = savedRotation;
-			transform.rotation = Quaternion.identity;
+			transform.rotation = savedRotation;
 		}
+
+
 	}
 }

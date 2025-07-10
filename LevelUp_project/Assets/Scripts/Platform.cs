@@ -1,8 +1,12 @@
+using System;
 using UnityEngine;
 
 public class Platform : MonoBehaviour
 {
-    public bool isPlayer; // Para GrowingPlant.cs
+    public static event EventHandler<Platform> OnPlayerRide;
+	public static event EventHandler<Platform> OnPlayerLeave;
+
+	public bool isPlayer; // Para GrowingPlant.cs
     private bool canChangeState = true; // Controla si se puede cambiar isPlayer para evitar clipping
     public float stateChangeCooldown = 0.5f; // Tiempo de espera entre cambios
 
@@ -12,19 +16,22 @@ public class Platform : MonoBehaviour
         {   
             isPlayer = true;
             collision.transform.SetParent(transform);
-            StartCoroutine(StateChangeCooldown());
+
+            OnPlayerRide?.Invoke(this, this);
+            //StartCoroutine(StateChangeCooldown());
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (canChangeState && collision.gameObject.CompareTag("Player"))
+        if (canChangeState && collision.gameObject.CompareTag("Player") && isPlayer) //
         {
-            isPlayer = false;
+			isPlayer = false;
             collision.transform.SetParent(null);
-            StartCoroutine(StateChangeCooldown());
-        }
-    }
+			OnPlayerLeave?.Invoke(this, this);
+			StartCoroutine(StateChangeCooldown());
+		}
+	}
 
     private System.Collections.IEnumerator StateChangeCooldown()
     {
