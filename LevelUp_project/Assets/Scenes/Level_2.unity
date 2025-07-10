@@ -67220,6 +67220,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 906910095953337611, guid: 29d6102cd88f15a46acb7451303cece6, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: d1f4701987c5f5848b1d4a9ebf394929, type: 2}
     - target: {fileID: 1404339415138601952, guid: 29d6102cd88f15a46acb7451303cece6, type: 3}
       propertyPath: isoCam
       value: 
