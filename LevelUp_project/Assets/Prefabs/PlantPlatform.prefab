@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 235392542524702699}
   - component: {fileID: 128119692001031164}
   - component: {fileID: 4441275772307007329}
-  - component: {fileID: 2346647193801795363}
   m_Layer: 0
   m_Name: PlantPlatformSpline
   m_TagString: Untagged
@@ -193,7 +192,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 4381
+  m_VersionIndex: 4435
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -311,21 +310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d1f824751b5c634f8a7f5940cb527fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlayer: 0
---- !u!114 &2346647193801795363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1045018314762151545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 093bc06fa806b7d468c94856769d8c17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  platform: {fileID: 4441275772307007329}
-  splineAnimate: {fileID: 793068516072873552}
+  smoothing: 0.2
 --- !u!1 &2848990619685804201
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,6 +321,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5119023608363165933}
   - component: {fileID: 793068516072873552}
+  - component: {fileID: 2349708538922340392}
+  - component: {fileID: 9095943062700290158}
   m_Layer: 0
   m_Name: PlantPlatform
   m_TagString: Untagged
@@ -375,10 +362,46 @@ MonoBehaviour:
   m_PlayOnAwake: 0
   m_LoopMode: 0
   m_Method: 0
-  m_Duration: 3
-  m_MaxSpeed: 10
+  m_Duration: 4
+  m_MaxSpeed: 1.663448
   m_EasingMode: 3
-  m_AlignmentMode: 3
+  m_AlignmentMode: 2
   m_ObjectForwardAxis: 2
   m_ObjectUpAxis: 1
   m_StartOffset: 0
+--- !u!114 &2349708538922340392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2848990619685804201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e36fa8bd3855e464e9bbb1f6b51bff2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToGrow: 4
+  splineExtrude: {fileID: 0}
+  splineAnimator: {fileID: 793068516072873552}
+--- !u!65 &9095943062700290158
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2848990619685804201}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.535583, y: 1.2266585, z: 2.1544302}
+  m_Center: {x: 1.7677915, y: 0.826129, z: 0.028396726}
