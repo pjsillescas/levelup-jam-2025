@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1056709281447869103}
   - component: {fileID: 1892422488075825419}
   - component: {fileID: 3005696992857668966}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Nenufar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,3 +334,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d1f824751b5c634f8a7f5940cb527fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayer: 0
+  stateChangeCooldown: 0.5
