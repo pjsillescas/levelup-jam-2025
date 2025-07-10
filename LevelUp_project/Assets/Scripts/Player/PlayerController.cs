@@ -8,17 +8,20 @@ namespace player
 	{
 		[Header("Player Settings")]
 		[SerializeField]
-		private float moveSpeed = 5f;
+		private float moveSpeed = 10f;
 		[SerializeField]
 		private CameraMode currentMode = CameraMode.SideScroller;
 		[SerializeField]
 		private float jumpForce = 7f;
+		[SerializeField, Range(0f, 1f)]
+		private float airControl = 0.43f;
+
 
 		[Header("GroundCheck")]
 		[SerializeField]
 		private Transform groundCheck;
 		[SerializeField]
-		private float groundCheckRadius = 0.3f;
+		private float groundCheckRadius = 0.2f;
 		[SerializeField]
 		private LayerMask groundLayer;
 
@@ -34,14 +37,14 @@ namespace player
 		[SerializeField]
 		private SplineContainer sideScrollerSpline;
 
+		private bool isGrounded;
 		private Rigidbody rb;
 		private InputActions input;
 		private CameraManager cameraManager;
 		private float splineLength;
-		private float distancePercentage;
-		private bool isGrounded;
+		private float distancePercentage = 0f;
 		private bool _isOnVine;
-
+		private Quaternion savedRotation;
 
 		void Awake()
 		{
@@ -55,7 +58,14 @@ namespace player
 			cameraManager = FindFirstObjectByType<CameraManager>();
 			SwitchToMode(currentMode);
 
-			splineLength = sideScrollerSpline.CalculateLength();
+			if (sideScrollerSpline != null)
+			{
+				splineLength = sideScrollerSpline.CalculateLength();
+			}
+			else
+			{
+				Debug.LogWarning("SideScrollerSpline is not assigned.");
+			}
 
 			if (currentMode == CameraMode.SideScroller)
 			{
@@ -89,29 +99,28 @@ namespace player
 			}
 			else if (currentMode == CameraMode.Isometric)
 			{
+				/*
 				// Rotate input for isometric movement
 				Vector3 isoInput = Quaternion.Euler(0, -45, 0) * moveVector.normalized;
-				isoInput = -isoInput; // Invertir controles
 				Vector3 move = isoInput * moveSpeed;
-
-				if (!_isOnVine)
-				{
-					rb.useGravity = true;
-					rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
-				}
-				else
-				{
-					rb.useGravity = false;
-					rb.linearVelocity = new Vector3(0f, -move.x, 0f);
-				}
+				rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
+				*/
+				ApplyMovementIsometric(moveVector);
 			}
+		}
+
+		private float GetMoveSpeed()
+		{
+			var airControlFactor = (isGrounded) ? 1 : airControl;
+			return (moveSpeed) * airControlFactor;
 		}
 
 		private void ApplyMovementSideScroller(float inputX)
 		{
 			if (Mathf.Abs(inputX) < 0.1f) { return; }
 
-			var deltaMove = -Mathf.Sign(inputX) * moveSpeed * Time.deltaTime / splineLength;
+			var speed = GetMoveSpeed() / splineLength;
+			var deltaMove = -Mathf.Sign(inputX) * speed * Time.deltaTime ;
 			distancePercentage = Mathf.Clamp(distancePercentage + deltaMove, 0, 1);
 
 			Vector3 targetPosition = sideScrollerSpline.EvaluatePosition(distancePercentage);
@@ -121,6 +130,25 @@ namespace player
 			//rb.linearVelocity = new Vector3(direction.x * moveSpeed, rb.linearVelocity.y, direction.z * moveSpeed);
 		}
 
+		private void ApplyMovementIsometric(Vector3 moveVector)
+		{
+			// Rotate input for isometric movement
+			Vector3 isoInput = Quaternion.Euler(0, -45, 0) * moveVector.normalized;
+			isoInput = -isoInput; // Invertir controles
+			var speed = GetMoveSpeed();
+			Vector3 move = isoInput * speed;
+
+			if (!_isOnVine)
+			{
+				rb.useGravity = true;
+				rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
+			}
+			else
+			{
+				rb.useGravity = false;
+				rb.linearVelocity = new Vector3(0f, -move.x, 0f);
+			}
+		}
 		private void ApplyJump()
 		{
 			rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
@@ -148,6 +176,17 @@ namespace player
 			currentMode = currentMode == CameraMode.SideScroller ? CameraMode.Isometric : CameraMode.SideScroller;
 
 			SwitchToMode(currentMode);
+		}
+
+		public void SaveRotation()
+		{
+			savedRotation = transform.rotation;
+		}
+
+		public void RestoreRotation()
+		{
+			//transform.rotation = savedRotation;
+			transform.rotation = Quaternion.identity;
 		}
 	}
 }

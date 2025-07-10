@@ -30852,7 +30852,7 @@ GameObject:
   - component: {fileID: 713292434}
   - component: {fileID: 713292433}
   - component: {fileID: 713292432}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Caseta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31925,11 +31925,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7748813811416072515, guid: ffaae2ffae9d1bd4092a209940c7081c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -108.09
+      value: -128.09
       objectReference: {fileID: 0}
     - target: {fileID: 7748813811416072515, guid: ffaae2ffae9d1bd4092a209940c7081c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -23.48
+      value: -3.4799995
+      objectReference: {fileID: 0}
+    - target: {fileID: 7748813811416072515, guid: ffaae2ffae9d1bd4092a209940c7081c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.40885773
+      objectReference: {fileID: 0}
+    - target: {fileID: 7748813811416072515, guid: ffaae2ffae9d1bd4092a209940c7081c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.14396553
+      objectReference: {fileID: 0}
+    - target: {fileID: 7748813811416072515, guid: ffaae2ffae9d1bd4092a209940c7081c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.8500154
+      objectReference: {fileID: 0}
+    - target: {fileID: 7748813811416072515, guid: ffaae2ffae9d1bd4092a209940c7081c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.2993044
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
