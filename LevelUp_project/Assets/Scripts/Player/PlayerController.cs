@@ -58,7 +58,14 @@ namespace player
 			cameraManager = FindFirstObjectByType<CameraManager>();
 			SwitchToMode(currentMode);
 
-			splineLength = (sideScrollerSpline != null) ? sideScrollerSpline.CalculateLength() : 0.1f;
+			if (sideScrollerSpline != null)
+			{
+				splineLength = sideScrollerSpline.CalculateLength();
+			}
+			else
+			{
+				Debug.LogWarning("SideScrollerSpline is not assigned.");
+			}
 
 			if (currentMode == CameraMode.SideScroller)
 			{
