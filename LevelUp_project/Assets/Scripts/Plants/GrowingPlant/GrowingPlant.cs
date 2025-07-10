@@ -3,28 +3,28 @@ using UnityEngine.Splines;
 
 public class GrowingPlant : MonoBehaviour
 {
-    public Platform platform;
-    public SplineAnimate splineAnimate;
+    //public Platform platform;
+    //public SplineAnimate splineAnimate;
 
-    void Update()
-    {
-        if (splineAnimate == null) return;
+    //void Update()
+    //{
+    //    if (splineAnimate == null) return;
 
-        if (platform.isPlayer)
-        {
-            splineAnimate.Play();
-        }
-        else
-        {
-            StartCoroutine(ResetSplineAfterDelay());
-        }
-    }
+    //    if (platform.isPlayer)
+    //    {
+    //        splineAnimate.Play();
+    //    }
+    //    else
+    //    {
+    //        StartCoroutine(ResetSplineAfterDelay());
+    //    }
+    //}
 
-    private System.Collections.IEnumerator ResetSplineAfterDelay()
-    {
-        if (splineAnimate == null) yield break;
+    //private System.Collections.IEnumerator ResetSplineAfterDelay()
+    //{
+    //    if (splineAnimate == null) yield break;
 
-        yield return new WaitForSeconds(2);
-        splineAnimate.Restart(false);
-    }
+    //    yield return new WaitForSeconds(2);
+    //    splineAnimate.Restart(false);
+    //}
 }
