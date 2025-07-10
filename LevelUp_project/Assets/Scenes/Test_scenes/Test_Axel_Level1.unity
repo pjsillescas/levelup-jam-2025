@@ -149,7 +149,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 642422600171705032, guid: 9c7e86956809bf242acda577df3e9d40, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -85.8
+      value: -92.94
       objectReference: {fileID: 0}
     - target: {fileID: 642422600171705032, guid: 9c7e86956809bf242acda577df3e9d40, type: 3}
       propertyPath: m_LocalPosition.y
@@ -36603,10 +36603,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2675407914975606508, guid: c11ea724eada4f543b8b7059de27e3b5, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 590c1647fecf93144a0ed01c8a132a13, type: 3}
     - target: {fileID: 3571906635611342566, guid: c11ea724eada4f543b8b7059de27e3b5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 238.49751
@@ -36667,18 +36663,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8948560341936793535, guid: c11ea724eada4f543b8b7059de27e3b5, type: 3}
-      propertyPath: textSpeed
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8948560341936793535, guid: c11ea724eada4f543b8b7059de27e3b5, type: 3}
-      propertyPath: maxTimeBetweenDialogues
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9185743595530870734, guid: c11ea724eada4f543b8b7059de27e3b5, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f84c756c0dc996f45a1d9d2b42336ab2, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
