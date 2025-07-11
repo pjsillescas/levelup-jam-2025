@@ -342,6 +342,7 @@ GameObject:
   - component: {fileID: 906910095953337611}
   - component: {fileID: 6724065106376052285}
   - component: {fileID: 8416189366310057157}
+  - component: {fileID: 4561231285648948815}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -462,6 +463,28 @@ MonoBehaviour:
   shadowSphere: {fileID: 1378978469590995962}
   offset: 0.5
   shadowHeightOffset: 0.01
+--- !u!95 &4561231285648948815
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6142166552380369104}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9c91dd244d1a2c3478d2fc0a7bdc1bb8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6641527768123909109
 GameObject:
   m_ObjectHideFlags: 0

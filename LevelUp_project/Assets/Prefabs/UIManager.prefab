@@ -394,7 +394,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 81.9
+  m_fontSize: 85.55
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -655,7 +655,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48.65
+  m_fontSize: 50.85
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1059,6 +1059,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8580181899319780915}
   - component: {fileID: 6194311187112868925}
+  - component: {fileID: 228959819748673756}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -1096,6 +1097,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonAnimDuration: 0.15
   optionsManager: {fileID: 6343399550869576898}
+--- !u!95 &228959819748673756
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3536919761620860808}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4016794699240525706
 GameObject:
   m_ObjectHideFlags: 0
@@ -1300,7 +1323,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45.05
+  m_fontSize: 47.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1571,7 +1594,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48.65
+  m_fontSize: 50.85
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2580,7 +2603,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 78.8
+  m_fontSize: 82.35
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
