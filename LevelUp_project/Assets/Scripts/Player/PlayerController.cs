@@ -37,6 +37,9 @@ namespace player
 		[SerializeField]
 		private SplineContainer sideScrollerSpline;
 
+		[SerializeField]
+		private float inertialDecay = 0.2f;
+
 		private bool isGrounded;
 		private Rigidbody rb;
 		private InputActions input;
@@ -45,11 +48,15 @@ namespace player
 		private float distancePercentage = 0f;
 		private bool _isOnVine;
 		private Quaternion savedRotation;
+		
+		private Vector3 inertialForce;
 
 		void Awake()
 		{
 			input = new InputActions();
 			input.Enable();
+
+			inertialForce = Vector3.zero;
 		}
 
 		private void Start()
@@ -71,6 +78,11 @@ namespace player
 			{
 				ApplyMovementSideScroller(-0.1f);
 			}
+
+			savedRotation = transform.rotation;
+
+			Platform.OnPlatformEnter += OnPlatformEnter;
+			Platform.OnPlatformLeave += OnPlatformLeave;
 		}
 
 		void Update()
@@ -130,12 +142,19 @@ namespace player
 			//rb.linearVelocity = new Vector3(direction.x * moveSpeed, rb.linearVelocity.y, direction.z * moveSpeed);
 		}
 
+		private Vector3 move;
 		private void ApplyMovementIsometric(Vector3 moveVector)
 		{
 			// Rotate input for isometric movement
 			Vector3 isoInput = Quaternion.Euler(0, -45, 0) * moveVector.normalized;
 			isoInput = -isoInput; // Invertir controles
 			var speed = GetMoveSpeed();
+
+			//ApplyIsometricDisplacement(isoInput * speed);
+
+			move = isoInput * speed;
+
+			/*
 			Vector3 move = isoInput * speed;
 
 			if (!_isOnVine)
@@ -148,12 +167,79 @@ namespace player
 				rb.useGravity = false;
 				rb.linearVelocity = new Vector3(0f, -move.x, 0f);
 			}
+			*/
 		}
+
+		private Vector3 velocity;
+
+		private void AddVelocity(Vector3 deltaVelocity)
+		{
+			float factor = 0.8f;
+			velocity = Vector3.Lerp(velocity, deltaVelocity, factor); // velocity * (1 - factor) + factor * deltaVelocity;
+			//velocity = deltaVelocity;
+		}
+		private void ApplyIsometricDisplacement(Vector3 move)
+		{
+			if (!_isOnVine)
+			{
+				rb.useGravity = true;
+				AddVelocity(move + inertialForce /*+ new Vector3(0, rb.linearVelocity.y, 0)*/);
+				rb.linearVelocity = velocity;
+
+
+				//Debug.Log($"({velocity.x:C3},{velocity.y:C3},{velocity.z:C3})");
+
+			}
+			else
+			{
+				rb.useGravity = false;
+				rb.linearVelocity = new Vector3(0f, -move.x, 0f);
+			}
+		}
+
 		private void ApplyJump()
 		{
 			rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-			rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+			//var inertialForce = Vector3.zero;
+			/*
+			if (performInertialForce)
+			{
+				performInertialForce = false;
+				inertialForce = this.inertialForce;
+			}
+			*/
+			//var force = (Vector3.up * jumpForce) + inertialForce;
+
+			//Debug.Log($"jump force ({force.x},{force.y},{force.z})");
+
+			//rb.AddForce(force, ForceMode.Impulse);
+
+			inertialForce += new Vector3(0, jumpForce, 0);
+
+			Debug.Log($"salto ({inertialForce.x} _ {inertialForce.x} _ {inertialForce.x})");
 		}
+
+		private void DecayInertialForces()
+		{
+			float decayRate = 0.9f; // tune this
+			if (inertialForce.sqrMagnitude > 0.001f)
+			{
+				inertialForce = inertialForce * decayRate;// Vector3.Lerp(inertialForce, Vector3.zero, Time.deltaTime * decayRate);
+				Debug.Log($"inertialforce ('{inertialForce.x}','{inertialForce.y}','{inertialForce.z}')");
+			}
+		}
+
+		private void LateUpdate()
+		{
+			if (currentMode != CameraMode.Isometric)
+			{
+				return;
+			}
+			ApplyIsometricDisplacement(move);
+			DecayInertialForces();
+		}
+
+
 
 		public void SwitchToMode(CameraMode mode)
 		{
@@ -178,15 +264,36 @@ namespace player
 			SwitchToMode(currentMode);
 		}
 
-		public void SaveRotation()
-		{
-			savedRotation = transform.rotation;
-		}
-
 		public void RestoreRotation()
 		{
 			//transform.rotation = savedRotation;
-			transform.rotation = Quaternion.identity;
+			transform.rotation = savedRotation;
 		}
+
+		private void OnPlatformEnter(object sender, Platform platformEntered)
+		{
+			;
+		}
+
+		private void OnPlatformLeave(object sender, Platform platformLeft)
+		{
+			var forward = transform.forward;
+			RestoreRotation();
+			if (currentMode == CameraMode.Isometric)
+			{
+				float inertialSpeed = 3000f;
+				//var lastDisplacement = platformLeft.GetLastDisplacement();
+				var lastDisplacement = forward;
+				if (lastDisplacement.sqrMagnitude > 0.1f)
+				{
+					inertialForce = lastDisplacement.normalized * inertialSpeed;
+					//performInertialForce = true;
+					//rb.AddForce(inertialForce, ForceMode.Impulse);
+					AddVelocity(inertialForce);
+				}
+			}
+		}
+
+
 	}
 }
