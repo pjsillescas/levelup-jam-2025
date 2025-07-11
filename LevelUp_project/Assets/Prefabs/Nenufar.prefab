@@ -336,8 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d1f824751b5c634f8a7f5940cb527fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlayer: 0
-  stateChangeCooldown: 0.5
+  smoothing: 0.2
 --- !u!1 &6943625234973230538
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,7 +392,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: bb575b6e360dd154ea547ce2dc78efc5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
