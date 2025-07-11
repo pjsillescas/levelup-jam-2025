@@ -94,17 +94,10 @@ namespace player
 
 			if (currentMode == CameraMode.SideScroller)
 			{
-				//rb.linearVelocity = new Vector3(moveVector.x * moveSpeed, rb.linearVelocity.y, 0f);
 				ApplyMovementSideScroller(moveVector.x);
 			}
 			else if (currentMode == CameraMode.Isometric)
 			{
-				/*
-				// Rotate input for isometric movement
-				Vector3 isoInput = Quaternion.Euler(0, -45, 0) * moveVector.normalized;
-				Vector3 move = isoInput * moveSpeed;
-				rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
-				*/
 				ApplyMovementIsometric(moveVector);
 			}
 		}
@@ -133,8 +126,7 @@ namespace player
 		private void ApplyMovementIsometric(Vector3 moveVector)
 		{
 			// Rotate input for isometric movement
-			Vector3 isoInput = Quaternion.Euler(0, -45, 0) * moveVector.normalized;
-			isoInput = -isoInput; // Invertir controles
+			Vector3 isoInput = Quaternion.Euler(0, 45, 0) * moveVector.normalized;
 			var speed = GetMoveSpeed();
 			Vector3 move = isoInput * speed;
 
