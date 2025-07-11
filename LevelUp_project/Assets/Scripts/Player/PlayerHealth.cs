@@ -24,7 +24,7 @@ public class PlayerHealth : MonoBehaviour
         //Obtener la posición del checkpoint actual
         Vector3 respawnPosition = CheckpointManager.instance.GetSpawnPosition();
 
-        //? Añadir sonido tipo ouch o algo así?
+        AudioManager.instance.PlaySFX(0); // Reproducir sonido al caer
 
         StartCoroutine(RespawnPlayer(respawnPosition));
     }
