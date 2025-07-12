@@ -11,7 +11,9 @@ public class CameraSwapper : MonoBehaviour
 	{
 		if (other.TryGetComponent(out PlayerController playerController))
 		{
-			playerController.SwitchToMode(cameraMode);
+			var cameraMode = playerController.GetCurrentCameraMode();
+			var newCameraMode = (cameraMode == CameraMode.Isometric) ? CameraMode.Topdown : CameraMode.Isometric;
+			playerController.SwitchToMode(newCameraMode);
 		}
 	}
 }

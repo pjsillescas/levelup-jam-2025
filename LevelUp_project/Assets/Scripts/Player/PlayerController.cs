@@ -198,5 +198,10 @@ namespace player
 		{
 			canJump = !canJump;
 		}
+
+		public CameraMode GetCurrentCameraMode()
+		{
+			return currentMode;
+		}
 	}
 }
