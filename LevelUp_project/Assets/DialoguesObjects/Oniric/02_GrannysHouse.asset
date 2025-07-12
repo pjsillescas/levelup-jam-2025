@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - characterName: 0
+    text: "\xA1Qu\xE9 r\xE1pido se me ha pasado!"
+  - characterName: 0
+    text: "Me encanta usar la imaginaci\xF3n de vuelta a casa jsjsjs"
+  - characterName: 0
     text: "\xA1\xA1Yayooooos, ya estoy aqu\xEDii!!"
   - characterName: 0
     text: "\xBFVerdad que puedo ayudaros hoy a cuidar el jard\xEDn?"
