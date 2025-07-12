@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
     [SerializeField] private List<AudioSource> musicList; // Fuente de audio para la música
-    [SerializeField] private List<AudioSource> SFXList; // Fuente de audio para los efectos de sonido
+    [SerializeField] private List<AudiosSFX> SFXList; // Fuente de audio para los efectos de sonido
     private void Awake()
     {
         if (instance == null)
@@ -53,7 +53,7 @@ public class AudioManager : MonoBehaviour
         }
         if (musicList[musicIndex].isPlaying)
             return; // Si la música ya está reproduciéndose, no hacer nada
-        
+
         StopMusic(); // Detener la música actual
         musicList[musicIndex].Play(); // Reproducir la música seleccionada
     }
@@ -66,6 +66,18 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("Índice de SFX fuera de rango: " + sfxIndex);
             return;
         }
-        SFXList[sfxIndex].Play(); // Reproducir el efecto de sonido seleccionado
+        SFXList[sfxIndex].audioSource.clip = SFXList[sfxIndex].audioClips[Random.Range(0, SFXList[sfxIndex].audioClips.Count)];
+        SFXList[sfxIndex].audioSource.Play(); // Reproducir el efecto de sonido seleccionado
+    }
+
+    //Método para parar un efecto de sonido específico
+    public void StopSFX(int sfxIndex)
+    {
+        if (sfxIndex < 0 || sfxIndex >= SFXList.Count)
+        {
+            Debug.LogWarning("Índice de SFX fuera de rango: " + sfxIndex);
+            return;
+        }
+        SFXList[sfxIndex].audioSource.Stop(); // Detener el efecto de sonido seleccionado
     }
 }
