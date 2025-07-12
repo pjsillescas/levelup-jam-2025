@@ -156,14 +156,22 @@ namespace player
 
 			if (mode == CameraMode.SideScroller)
 			{
+				SetMaterialFriction(1f);
 				rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
 			}
 			else if (mode == CameraMode.Isometric || mode == CameraMode.Topdown)
 			{
+				SetMaterialFriction(0f);
 				rb.constraints = RigidbodyConstraints.FreezeRotation;
 			}
 
 			cameraManager.SwitchCameraMode(currentMode);
+		}
+
+		private void SetMaterialFriction(float friction)
+		{
+			Debug.Log($"setting friction to {friction}");
+			GetComponent<CapsuleCollider>().sharedMaterial.staticFriction = friction;
 		}
 
 		public void SwitchCameraMode()
