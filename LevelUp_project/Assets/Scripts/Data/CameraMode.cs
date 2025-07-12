@@ -1,3 +1,3 @@
 using UnityEngine;
 
-public enum CameraMode { SideScroller, Isometric }
+public enum CameraMode { SideScroller, Isometric, Topdown }
