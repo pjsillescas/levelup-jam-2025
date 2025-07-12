@@ -60,9 +60,23 @@ public class OptionsManager : MonoBehaviour
     //Método para setear los sliders de las opciones en el menú y la opción de dificultad
     public void SetSliders()
     {
-        musicVolumeSlider.value = musicVolume;
-        SFXVolumeSlider.value = SFXVolume;
+        if (musicVolumeSlider != null)
+        {
+            musicVolumeSlider.value = musicVolume;
+        }
+        else
+        {
+            Debug.LogWarning("Music Volume Slider is not assigned in the inspector.");
+        }
 
+        if (SFXVolumeSlider != null)
+        {
+            SFXVolumeSlider.value = SFXVolume;
+        }
+        else
+        {
+            Debug.LogWarning("SFX Volume Slider is not assigned in the inspector.");
+        }
     }
 
     //Método para ajustar bien los botones del panel de opciones
