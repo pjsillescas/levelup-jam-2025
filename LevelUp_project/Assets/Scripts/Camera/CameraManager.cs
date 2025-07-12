@@ -22,10 +22,13 @@ public class CameraManager : MonoBehaviour
 		{
 			var follow = IsometricCamera.GetComponent<CinemachineThirdPersonFollow>();
 
-			var finalShoulderLength = 
-				(cameraMode == CameraMode.Isometric) ? SHOULDER_LENGTH_ISOMETRIC : SHOULDER_LENGTH_TOPDOWN;
+			var isIsometric = cameraMode == CameraMode.Isometric;
+			// var finalShoulderLength = (isIsometric) ? SHOULDER_LENGTH_ISOMETRIC : SHOULDER_LENGTH_TOPDOWN;
 
-			StartCoroutine(UpdateShoulder(follow, finalShoulderLength * new Vector3(-1, 1, -1)));
+			var finalShoulderLength = SHOULDER_LENGTH_ISOMETRIC;
+			var shoulderOffsetDirection = (isIsometric) ? new Vector3(-1, 1, -1) : new Vector3(-1, 2, -1);
+
+			StartCoroutine(UpdateShoulder(follow, finalShoulderLength * shoulderOffsetDirection));
 
 		}
 	}
