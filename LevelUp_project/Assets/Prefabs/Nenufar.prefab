@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1056709281447869103}
   - component: {fileID: 1892422488075825419}
   - component: {fileID: 3005696992857668966}
+  - component: {fileID: 8126827844384810103}
   m_Layer: 6
   m_Name: Nenufar
   m_TagString: Untagged
@@ -336,7 +337,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d1f824751b5c634f8a7f5940cb527fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothing: 0.2
+--- !u!136 &8126827844384810103
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3604885739117652619}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.02
+  m_Height: 8
+  m_Direction: 1
+  m_Center: {x: 0, y: 3, z: 0}
 --- !u!1 &6943625234973230538
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Splines;
 
@@ -15,6 +17,10 @@ public class MovingVehicle : MonoBehaviour
     [SerializeField] float resumeDelay;
 
 
+
+    [Header("Wheel animation")]
+    [SerializeField] private List<GameObject> wheelPrefabs;
+    [SerializeField] private float wheelRotationSpeed;
     private bool isPlayerInFront;
     private bool isPaused = false;
     private float resumeTimer = 0f;
@@ -22,6 +28,7 @@ public class MovingVehicle : MonoBehaviour
     private void FixedUpdate()
     {
         bool isPlayerInFront = CastRayArc();
+        RotateWheels();
 
         if (isPlayerInFront)
         {
@@ -67,7 +74,7 @@ public class MovingVehicle : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit hit, rayLength))
             {
                 
-                if (hit.collider.CompareTag("Player"))
+                if (hit.collider.CompareTag("Player") || hit.collider.CompareTag("Vehicle"))
                 {
                     
                     isPlayerInFront = true;
@@ -78,4 +85,18 @@ public class MovingVehicle : MonoBehaviour
         return isPlayerInFront;
     }
 
+
+    private void RotateWheels()
+    {
+        if(!isPlayerInFront)
+        {
+            foreach (GameObject pairOfWheels in wheelPrefabs)
+            {
+                pairOfWheels.transform.Rotate(Vector3.right * wheelRotationSpeed * Time.deltaTime);
+
+            }
+
+
+        }
+    }
 }
