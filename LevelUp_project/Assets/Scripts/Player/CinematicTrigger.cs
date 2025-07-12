@@ -18,6 +18,9 @@ public class CinematicTrigger : MonoBehaviour
     [SerializeField]
     private PlayerController playerController;
 
+    private CyntiaAnimation cyntiaAnimation;
+    private Animator cyntiaAnimator;
+
     private void Awake()
     {
 		if (playerController == null)
@@ -28,6 +31,15 @@ public class CinematicTrigger : MonoBehaviour
 				playerController = playerObject.GetComponent<PlayerController>();
 			}
 		}
+
+        if (playerController != null)
+        {
+            cyntiaAnimation = playerController.GetComponentInChildren<CyntiaAnimation>();
+            if (cyntiaAnimation != null)
+            {
+                cyntiaAnimator = cyntiaAnimation.GetComponent<Animator>();
+            }
+        }
 
         if (playCinematicOnAwake && cinematicDirector != null)
 		{
@@ -51,6 +63,16 @@ public class CinematicTrigger : MonoBehaviour
 			playerController.enabled = false; // Desactivar PlayerController
 		}
 
+		if (cyntiaAnimation != null)
+		{
+			cyntiaAnimation.enabled = false; // Desactivar CyntiaAnimation
+		}
+
+		if (cyntiaAnimator != null)
+		{
+			cyntiaAnimator.enabled = false; // Desactivar Animator
+		}
+
 		if (cinematicDirector != null)
 		{
 			cinematicDirector.Play();
@@ -60,6 +82,16 @@ public class CinematicTrigger : MonoBehaviour
 		if (playerController != null)
 		{
 			playerController.enabled = true; // Reactivar PlayerController
+		}
+
+		if (cyntiaAnimation != null)
+		{
+			cyntiaAnimation.enabled = true; // Reactivar CyntiaAnimation
+		}
+
+		if (cyntiaAnimator != null)
+		{
+			cyntiaAnimator.enabled = true; // Reactivar Animator
 		}
 
 		if (!string.IsNullOrEmpty(sceneToTravelTo)) // Si no está vacío el nombre de la escena
