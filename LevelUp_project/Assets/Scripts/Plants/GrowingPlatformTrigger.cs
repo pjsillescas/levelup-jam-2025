@@ -11,16 +11,14 @@ public class GrowingPlatformTrigger : MonoBehaviour
 
 
 
-
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             StartCoroutine(GrowVine());
             splineAnimator.Play();
         }
     }
-
 
     private IEnumerator GrowVine()
     {
