@@ -192,6 +192,11 @@ namespace player
 			transform.rotation = Quaternion.identity;
 		}
 
+		public bool IsJumpEnabled()
+		{
+			return canJump;
+		}
+
 		public void EnableJump()
 		{
 			canJump = true;

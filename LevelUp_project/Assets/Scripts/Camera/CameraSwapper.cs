@@ -7,13 +7,23 @@ public class CameraSwapper : MonoBehaviour
     [SerializeField]
     private CameraMode cameraMode;
 
+	private CameraMode originalCameraMode;
+
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.TryGetComponent(out PlayerController playerController))
 		{
-			var cameraMode = playerController.GetCurrentCameraMode();
-			var newCameraMode = (cameraMode == CameraMode.Isometric) ? CameraMode.Topdown : CameraMode.Isometric;
+			originalCameraMode = playerController.GetCurrentCameraMode();
+			var newCameraMode = (originalCameraMode == CameraMode.Isometric) ? CameraMode.Topdown : CameraMode.Isometric;
 			playerController.SwitchToMode(newCameraMode);
+		}
+	}
+
+	private void OnTriggerExit(Collider other)
+	{
+		if (other.TryGetComponent(out PlayerController playerController))
+		{
+			playerController.SwitchToMode(originalCameraMode);
 		}
 	}
 }
