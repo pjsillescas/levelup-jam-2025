@@ -80,4 +80,6 @@ public class AudioManager : MonoBehaviour
         }
         SFXList[sfxIndex].audioSource.Stop(); // Detener el efecto de sonido seleccionado
     }
+
+    
 }
