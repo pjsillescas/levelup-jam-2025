@@ -8,8 +8,8 @@ public class CameraManager : MonoBehaviour
 	public CinemachineCamera SideScrollingCamera;
 	public CinemachineCamera IsometricCamera;
 
-	private const float SHOULDER_LENGTH_ISOMETRIC = 10;
-	private const float SHOULDER_LENGTH_TOPDOWN = 20;
+	[SerializeField] private Vector3 SHOULDER_LENGTH_ISOMETRIC = new Vector3(10, 10, 10);
+	[SerializeField] private Vector3 SHOULDER_LENGTH_TOPDOWN = new Vector3(20, 20, 20);
 
 	public void SwitchCameraMode(CameraMode cameraMode)
 	{
@@ -23,12 +23,10 @@ public class CameraManager : MonoBehaviour
 			var follow = IsometricCamera.GetComponent<CinemachineThirdPersonFollow>();
 
 			var isIsometric = cameraMode == CameraMode.Isometric;
-			// var finalShoulderLength = (isIsometric) ? SHOULDER_LENGTH_ISOMETRIC : SHOULDER_LENGTH_TOPDOWN;
-
-			var finalShoulderLength = SHOULDER_LENGTH_ISOMETRIC;
+			var finalShoulderLength = isIsometric ? SHOULDER_LENGTH_ISOMETRIC : SHOULDER_LENGTH_TOPDOWN;
 			var shoulderOffsetDirection = (isIsometric) ? new Vector3(-1, 1, -1) : new Vector3(-1, 2, -1);
 
-			StartCoroutine(UpdateShoulder(follow, finalShoulderLength * shoulderOffsetDirection));
+			StartCoroutine(UpdateShoulder(follow, Vector3.Scale(finalShoulderLength, shoulderOffsetDirection)));
 
 		}
 	}
