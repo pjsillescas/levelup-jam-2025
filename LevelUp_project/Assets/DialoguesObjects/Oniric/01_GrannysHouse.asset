@@ -18,4 +18,6 @@ MonoBehaviour:
   - characterName: 0
     text: "\xA1Qu\xE9 ganas de ir a casa de los yayos!"
   - characterName: 0
-    text: "Aunque ahora no tengo prisa porque me ri\xF1a la profe jejeje..."
+    text: "Aunque ya no tengo prisa, \xA1y quiero jugar!"
+  - characterName: 0
+    text: "\xBFY si...?"
