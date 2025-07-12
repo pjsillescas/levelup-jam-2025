@@ -15,6 +15,8 @@ namespace player
 		private float jumpForce = 7f;
 		[SerializeField, Range(0f, 1f)]
 		private float airControl = 0.43f;
+		[SerializeField]
+		private bool canJump;
 
 
 		[Header("GroundCheck")]
@@ -50,6 +52,7 @@ namespace player
 		{
 			input = new InputActions();
 			input.Enable();
+			canJump = true;
 		}
 
 		private void Start()
@@ -82,7 +85,7 @@ namespace player
 			_isOnVine = Physics.CheckSphere(vineCheck.position, vineCheckRadius, vineLayer);
 
 			var jump = input.Player.Jump.WasPressedThisFrame();
-			if (jump && isGrounded)
+			if (jump && isGrounded && canJump)
 			{
 				ApplyJump();
 			}
@@ -113,7 +116,7 @@ namespace player
 			if (Mathf.Abs(inputX) < 0.1f) { return; }
 
 			var speed = GetMoveSpeed() / splineLength;
-			var deltaMove = -Mathf.Sign(inputX) * speed * Time.deltaTime ;
+			var deltaMove = -Mathf.Sign(inputX) * speed * Time.deltaTime;
 			distancePercentage = Mathf.Clamp(distancePercentage + deltaMove, 0, 1);
 
 			Vector3 targetPosition = sideScrollerSpline.EvaluatePosition(distancePercentage);
@@ -179,6 +182,21 @@ namespace player
 		{
 			//transform.rotation = savedRotation;
 			transform.rotation = Quaternion.identity;
+		}
+
+		public void EnableJump()
+		{
+			canJump = true;
+		}
+
+		public void DisableJump()
+		{
+			canJump = false;
+		}
+
+		public void SwitchJump()
+		{
+			canJump = !canJump;
 		}
 	}
 }

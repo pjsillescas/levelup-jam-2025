@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 235392542524702699}
   - component: {fileID: 128119692001031164}
   - component: {fileID: 4441275772307007329}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlantPlatformSpline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -323,7 +323,7 @@ GameObject:
   - component: {fileID: 793068516072873552}
   - component: {fileID: 2349708538922340392}
   - component: {fileID: 9095943062700290158}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlantPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
