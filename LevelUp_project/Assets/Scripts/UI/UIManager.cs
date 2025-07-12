@@ -24,6 +24,22 @@ public class UIManager : MonoBehaviour
         CloseOptionsMenu(); // Asegurarse de que el menú de opciones esté cerrado al inicio
     }
 
+    void Update()
+    {
+        // Aquí se pueden manejar eventos de UI globales, como abrir el menú de opciones con una tecla
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (optionsManager.IsMenuOpen())
+            {
+                CloseOptionsMenu();
+            }
+            else
+            {
+                OpenOptionsMenu();
+            }
+        }
+    }
+
     //Método para obtener la duración de la animación del botón
     public float GetButtonAnimDuration()
     {

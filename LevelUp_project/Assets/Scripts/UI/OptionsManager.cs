@@ -101,4 +101,10 @@ public class OptionsManager : MonoBehaviour
         AdjustButtons(); // Ajustar los botones del panel de opciones
         SetSliders(); // Establecer los sliders al valor actual
     }
+
+    //Método para obtener si el menú de opciones está abierto
+    public bool IsMenuOpen()
+    {
+        return gameObject.activeSelf; // Retornar si el menú de opciones está activo
+    }
 }

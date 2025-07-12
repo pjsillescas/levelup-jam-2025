@@ -14,13 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - characterName: 0
-    text: "Hasta la vuelta parquecito, ahora no me puedo quedar o llegar\xE9 tarde."
-  - characterName: 0
-    text: "Espera aqu\xED, \xBFVale?"
+    text: "Hasta la vuelta parquecito. Espera aqu\xED, \xBFVale?"
   - characterName: 0
     text: ... No creo que vaya a moverse... Jeje
-  - characterName: 0
-    text: Jejeje...
   - characterName: 0
     text: "No creo, \xBFNo?, pero... Y si s\xED..."
   - characterName: 0

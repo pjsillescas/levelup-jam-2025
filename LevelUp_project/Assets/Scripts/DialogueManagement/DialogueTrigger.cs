@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    [SerializeField] private DialogueSequenceSO dialogueSequence;
+    [SerializeField] private DialogueSequenceSO[] dialogueSequence = new DialogueSequenceSO[1]; // Array para almacenar las secuencias de diálogo por idioma
     private bool hasTriggered = false;
 
     void Start()
@@ -19,8 +19,9 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (!hasTriggered)
         {
+            int languageIndex = DialogueManager.instance.GetCurrentLanguageIndex();
             hasTriggered = true; // Marcar como activado para evitar reactivaciones
-            DialogueManager.instance.StartDialogueSequence(dialogueSequence);
+            DialogueManager.instance.StartDialogueSequence(dialogueSequence[languageIndex]);
         }
     }
 
