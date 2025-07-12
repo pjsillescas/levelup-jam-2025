@@ -5,37 +5,28 @@ using UnityEngine.UI;
 public class CreditsManager : MonoBehaviour
 {
     // Velocidad de desplazamiento de los créditos
-    public float scrollSpeed;
-    // Objeto “Gracias por jugar” (inactivo al iniciar)
-    public GameObject thanksTextObject;
+    [SerializeField] float scrollSpeed;
     public GameObject panelCredits; // Referencia al panel de créditos
     public GameObject creditsContainer; // Referencia al container de créditos
-    public GameObject quitButton, playAgainButton; // Botones de salir y jugar de nuevo
     RectTransform rt; // Referencia al RectTransform del container de créditos
 
     float endYPosition; // Posición final en Y (anchoredPosition)
+    Vector2 startPosition; // Posición inicial en Y (anchoredPosition)
 
     void Start()
     {
         // Referencia al RectTransform para acceder fácilmente a sus propiedades
         rt = creditsContainer.GetComponent<RectTransform>();
-
-        //Ocultar el texto de gracias por jugar
-        thanksTextObject.SetActive(false);
+        startPosition = rt.anchoredPosition; // Guardar la posición inicial
 
         //Ocultar el panel de créditos al inicio
         panelCredits.SetActive(false);
-
-        //Desactivar los botones de salir y jugar de nuevo
-        quitButton.SetActive(false);
-        playAgainButton.SetActive(false);
 
     }
 
     //Método para iniciar el scroll de los créditos
     public void StartCredits()
     {
-        //!Pausar el input del jugador
         //GameManager.instance.StartDialogue(); // Iniciar el diálogo del GameManager
         //Abrir el panel de créditos
         panelCredits.SetActive(true);
@@ -49,7 +40,7 @@ public class CreditsManager : MonoBehaviour
 
     public IEnumerator ScrollCredits()
     {
-        float realScrollSpeed = scrollSpeed;
+        float realScrollSpeed;
         //Mientras no lleguemos al endYPosition...
         while (rt.anchoredPosition.y < endYPosition)
         {
@@ -66,12 +57,12 @@ public class CreditsManager : MonoBehaviour
             yield return null;
         }
 
-        //Desactivamos el container y mostramos “gracias”
-        creditsContainer.SetActive(false);
-        thanksTextObject.SetActive(true);
-        //Activar los botones de salir y jugar de nuevo
-        quitButton.SetActive(true);
-        playAgainButton.SetActive(true);
+        //Devolvemos al inicio por si se quieren volver a ver los créditos
+        rt.anchoredPosition = startPosition; // Volver a la posición inicial
+
+
+        //Desactivamos el panel
+        panelCredits.SetActive(false);
     }
 
     //Método para calcular la posición final de los créditos
@@ -94,16 +85,7 @@ public class CreditsManager : MonoBehaviour
 
         // Calculo de la Y final en anchoredPosition
         float startY = rt.anchoredPosition.y;
-        endYPosition = startY + totalHeight + 10f; // Añadimos un margen de 10 para que no se corte
-    }
-
-    //!TESTING
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            StartCredits(); // Iniciar los créditos al pulsar C
-        }
+        endYPosition = startY + totalHeight + 100f; // Añadimos un margen de 100 para que no se corte
     }
 
 }
