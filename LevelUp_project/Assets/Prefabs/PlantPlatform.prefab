@@ -133,58 +133,58 @@ MonoBehaviour:
   - m_Vertices: 0f000000
   m_SharedTextures: []
   m_Positions:
-  - {x: -2.9885101, y: 0, z: -1.9836702}
+  - {x: -1.6753775, y: -0.0000005004142, z: -1.6921982}
   - {x: -2.9885101, y: 0, z: 0}
   - {x: 0, y: 0, z: -1.9836702}
   - {x: 0, y: 0, z: 0}
   - {x: -2.9885101, y: 0, z: 0}
-  - {x: -2.9885101, y: 0, z: 1.9836702}
+  - {x: -1.6719465, y: -0.0000005004142, z: 1.5339084}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1.9836702}
   - {x: 0, y: 0, z: -1.9836702}
   - {x: 0, y: 0, z: 0}
-  - {x: 2.9885101, y: 0, z: -1.9836702}
-  - {x: 2.9885101, y: 0, z: 0}
+  - {x: 1.792071, y: -0.0000011816102, z: -1.0089221}
+  - {x: 2.530753, y: -0.0000005004142, z: 0.021798002}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1.9836702}
-  - {x: 2.9885101, y: 0, z: 0}
-  - {x: 2.9885101, y: 0, z: 1.9836702}
+  - {x: 2.530753, y: -0.0000005004142, z: 0.021798002}
+  - {x: 1.9506108, y: -0.0000011816102, z: 1.6607285}
   m_Textures0:
-  - {x: -2.9885101, y: -1.9836702}
-  - {x: -2.9885101, y: 0}
+  - {x: -1.6753775, y: -1.6921982}
+  - {x: -2.9885101, y: 7.3770146e-13}
   - {x: 0, y: -1.9836702}
   - {x: 0, y: 0}
   - {x: -2.9885101, y: 0}
-  - {x: -2.9885101, y: 1.9836702}
+  - {x: -1.6719465, y: 1.5339084}
   - {x: 0, y: 0}
   - {x: 0, y: 1.9836702}
   - {x: 0, y: -1.9836702}
   - {x: 0, y: 0}
-  - {x: 2.9885101, y: -1.9836702}
-  - {x: 2.9885101, y: 0}
+  - {x: 1.792071, y: -1.0089221}
+  - {x: 2.530753, y: 0.021798002}
   - {x: 0, y: 0}
   - {x: 0, y: 1.9836702}
-  - {x: 2.9885101, y: 0}
-  - {x: 2.9885101, y: 1.9836702}
+  - {x: 2.530753, y: 0.021798002}
+  - {x: 1.9506108, y: 1.6607285}
   m_Textures2: []
   m_Textures3: []
   m_Tangents:
+  - {x: 1, y: 0.0000004047812, z: 1.7332284e-20, w: -1}
+  - {x: 1, y: 0.0000002023906, z: 1.2342295e-13, w: -1}
+  - {x: 1, y: 0.0000002023906, z: 1.2342295e-13, w: -1}
+  - {x: 1, y: 0, z: 2.468459e-13, w: -1}
   - {x: 1, y: 0, z: 0, w: -1}
-  - {x: 1, y: 0, z: 0, w: -1}
-  - {x: 1, y: 0, z: 0, w: -1}
-  - {x: 1, y: 0, z: 0, w: -1}
-  - {x: 1, y: 0, z: 0, w: -1}
-  - {x: 1, y: 0, z: 0, w: -1}
-  - {x: 1, y: 0, z: 0, w: -1}
-  - {x: 1, y: 0, z: 0, w: -1}
-  - {x: 1, y: 0, z: 0, w: -1}
-  - {x: 1, y: 0, z: 0, w: -1}
-  - {x: 1, y: 0, z: 0, w: -1}
-  - {x: 1, y: 0, z: 0, w: -1}
-  - {x: 1, y: 0, z: 0, w: -1}
-  - {x: 1, y: 0, z: 0, w: -1}
-  - {x: 1, y: 0, z: 0, w: -1}
-  - {x: 1, y: 0, z: 0, w: -1}
+  - {x: 1, y: 0.00000014965018, z: 0, w: -1}
+  - {x: 1, y: 0.00000014965018, z: 0, w: -1}
+  - {x: 1, y: 0.00000029930035, z: 0, w: -1}
+  - {x: 1, y: -0.0000006593546, z: 0, w: -1}
+  - {x: 1, y: -0.00000043202195, z: 1.1476503e-20, w: -1}
+  - {x: 1, y: -0.00000043202195, z: 1.1476503e-20, w: -1}
+  - {x: 1, y: -0.00000020468929, z: 0, w: -1}
+  - {x: 1, y: -0.00000019773333, z: 0, w: -1}
+  - {x: 1, y: -0.00000045715183, z: 0, w: -1}
+  - {x: 1, y: -0.00000045715183, z: 0, w: -1}
+  - {x: 1, y: -0.0000007165703, z: 0, w: -1}
   m_Colors: []
   m_UnwrapParameters:
     m_HardAngle: 88
@@ -194,7 +194,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 4435
+  m_VersionIndex: 5111
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -358,6 +358,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5119023608363165933}
   - component: {fileID: 793068516072873552}
+  - component: {fileID: 9095943062700290158}
   m_Layer: 6
   m_Name: PlantPlatform
   m_TagString: Untagged
@@ -405,20 +406,6 @@ MonoBehaviour:
   m_ObjectForwardAxis: 2
   m_ObjectUpAxis: 1
   m_StartOffset: 0
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2848990619685804201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e36fa8bd3855e464e9bbb1f6b51bff2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToGrow: 4
-  splineExtrude: {fileID: 0}
-  splineAnimator: {fileID: 793068516072873552}
 --- !u!65 &9095943062700290158
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -451,7 +438,7 @@ GameObject:
   - component: {fileID: 7512327868936704076}
   - component: {fileID: 8097938635299589217}
   m_Layer: 0
-  m_Name: Nenufar
+  m_Name: Hoja
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -513,8 +500,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1562671769
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 57ca66f83cea24443a4e2d1f48e2ebd7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
