@@ -99,7 +99,7 @@ namespace player
 			{
 				ApplyMovementSideScroller(moveVector.x);
 			}
-			else if (currentMode == CameraMode.Isometric)
+			else if (currentMode == CameraMode.Isometric || currentMode == CameraMode.Topdown)
 			{
 				ApplyMovementIsometric(moveVector);
 			}
@@ -158,7 +158,7 @@ namespace player
 			{
 				rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
 			}
-			else if (mode == CameraMode.Isometric)
+			else if (mode == CameraMode.Isometric || mode == CameraMode.Topdown)
 			{
 				rb.constraints = RigidbodyConstraints.FreezeRotation;
 			}
@@ -197,6 +197,11 @@ namespace player
 		public void SwitchJump()
 		{
 			canJump = !canJump;
+		}
+
+		public CameraMode GetCurrentCameraMode()
+		{
+			return currentMode;
 		}
 	}
 }
