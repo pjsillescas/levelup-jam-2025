@@ -8,6 +8,8 @@ public class JumpPlantManager : MonoBehaviour
     [SerializeField]
     private Animator animator;
 
+
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -30,9 +32,8 @@ public class JumpPlantManager : MonoBehaviour
         playerRb.linearVelocity = new Vector3(playerRb.linearVelocity.x, 0f, playerRb.linearVelocity.z);
 
 
-
+        AudioManager.instance.PlaySFX(3);
         playerRb.AddForce(Vector3.up * launchForce, ForceMode.Impulse);
-
         animator.SetTrigger("LaunchPlayer");
     }
 
