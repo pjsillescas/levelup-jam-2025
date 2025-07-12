@@ -15,7 +15,6 @@ public class DialogueManager : MonoBehaviour
         if (instance == null)
         {
             instance = this; //Asignar la instancia si no existe
-            DontDestroyOnLoad(gameObject); //No destruir este objeto al cambiar de escena
         }
         else
         {

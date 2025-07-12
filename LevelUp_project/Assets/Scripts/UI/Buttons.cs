@@ -43,7 +43,7 @@ public class Buttons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
         col.size = new Vector2(textWidth, textHeight); // Ajustar el tamaño del collider al tamaño del botón
 
         buttonImage.fillAmount = 0f; // Asegurarse de que el botón comienza desmarcado
-        buttonImage.color = new Color(1f, 1f, 1f, 0.5f); // Cambiar el color del botón a blanco con transparencia al inicio
+        buttonImage.color = new Color(1f, 1f, 1f, 0.75f); // Cambiar el color del botón a blanco con transparencia al inicio
 
     }
 
@@ -79,6 +79,7 @@ public class Buttons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     //Corrutina para marcar el botón
     private IEnumerator MarkButtonCoroutine()
     {
+        AdjustButton(); // Asegurarse de que el botón está ajustado antes de marcarlo
         float startValue = buttonImage.fillAmount; // Valor inicial
         float elapsedTime = 0f;
 
@@ -95,13 +96,13 @@ public class Buttons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     //Método para seleccionar el botón
     private void ClickingButton()
     {
-        buttonImage.color = new Color(0.25f, 0.25f, 0.25f, 0.5f); // Cambiar el color del botón a gris al seleccionarlo
+        buttonImage.color = new Color(0.25f, 0.25f, 0.25f, 0.75f); // Cambiar el color del botón a gris al seleccionarlo
     }
 
     //Método para deseleccionar el botón
     private void UnclickButton()
     {
-        buttonImage.color = new Color(1f, 1f, 1f, 0.5f); // Cambiar el color del botón a blanco con transparencia al deseleccionarlo
+        buttonImage.color = new Color(1f, 1f, 1f, 0.75f); // Cambiar el color del botón a blanco con transparencia al deseleccionarlo
     }
 
     //Gestión del pointer enter
