@@ -1261,7 +1261,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "<b>Direcci\xF3n del juego</b>\nJon Gomez\n\n<b>Arte 2D/3D</b>\nJon Gomez\nJoan
     Gri\xF1\xE1n\nAlba Hern\xE1ndez\nDomenec Miralles\n\n<b>VFX</b>\nJoan Gri\xF1\xE1n\n\n<b>M\xFAsica/SFX</b>\nJoan
-    Gri\xF1\xE1n\n\n<b>Dise\xF1o de niveles</b>\nJon Gomez\n\n<b>Desarrollo</b>\nAxel
+    Gri\xF1\xE1n\nPixabay.com\n\n<b>Dise\xF1o de niveles</b>\nJon Gomez\n\n<b>Desarrollo</b>\nAxel
     Garc\xEDa\nDomenec Miralles\nPedro Jes\xFAs S\xE1nchez\n\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
