@@ -195,6 +195,18 @@ PrefabInstance:
       propertyPath: dialogueSequence
       value: 
       objectReference: {fileID: 11400000, guid: 0c7ed67da7342a5499267620edd059af, type: 2}
+    - target: {fileID: 5190654433990037402, guid: 9c7e86956809bf242acda577df3e9d40, type: 3}
+      propertyPath: dialogueSequence.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5190654433990037402, guid: 9c7e86956809bf242acda577df3e9d40, type: 3}
+      propertyPath: 'dialogueSequence.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 0c7ed67da7342a5499267620edd059af, type: 2}
+    - target: {fileID: 5190654433990037402, guid: 9c7e86956809bf242acda577df3e9d40, type: 3}
+      propertyPath: 'dialogueSequence.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 69b63c0a7c6bccf4790ac32c976c2afc, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2213,6 +2225,18 @@ PrefabInstance:
       propertyPath: dialogueSequence
       value: 
       objectReference: {fileID: 11400000, guid: c92abb5cea7fe9240b445631248072a0, type: 2}
+    - target: {fileID: 5190654433990037402, guid: 9c7e86956809bf242acda577df3e9d40, type: 3}
+      propertyPath: dialogueSequence.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5190654433990037402, guid: 9c7e86956809bf242acda577df3e9d40, type: 3}
+      propertyPath: 'dialogueSequence.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c92abb5cea7fe9240b445631248072a0, type: 2}
+    - target: {fileID: 5190654433990037402, guid: 9c7e86956809bf242acda577df3e9d40, type: 3}
+      propertyPath: 'dialogueSequence.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 3d6749b319057bc43ba15de72a5c93bd, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25142,6 +25166,18 @@ PrefabInstance:
       propertyPath: dialogueSequence
       value: 
       objectReference: {fileID: 11400000, guid: edfd797aab1e0e442a0861c33ea139c4, type: 2}
+    - target: {fileID: 5190654433990037402, guid: 9c7e86956809bf242acda577df3e9d40, type: 3}
+      propertyPath: dialogueSequence.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5190654433990037402, guid: 9c7e86956809bf242acda577df3e9d40, type: 3}
+      propertyPath: 'dialogueSequence.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: edfd797aab1e0e442a0861c33ea139c4, type: 2}
+    - target: {fileID: 5190654433990037402, guid: 9c7e86956809bf242acda577df3e9d40, type: 3}
+      propertyPath: 'dialogueSequence.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 5e6f9a7145f661b4f8a5d33512cfd60c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -36603,6 +36639,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1952262867156180963, guid: c11ea724eada4f543b8b7059de27e3b5, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 3571906635611342566, guid: c11ea724eada4f543b8b7059de27e3b5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 238.49751
@@ -36655,11 +36695,27 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5569375957759660559, guid: c11ea724eada4f543b8b7059de27e3b5, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5569375957759660559, guid: c11ea724eada4f543b8b7059de27e3b5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7392321467246686328, guid: c11ea724eada4f543b8b7059de27e3b5, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7392321467246686328, guid: c11ea724eada4f543b8b7059de27e3b5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8155818811681380171, guid: c11ea724eada4f543b8b7059de27e3b5, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8155818811681380171, guid: c11ea724eada4f543b8b7059de27e3b5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
@@ -45985,6 +46041,18 @@ PrefabInstance:
       propertyPath: dialogueSequence
       value: 
       objectReference: {fileID: 11400000, guid: cb8bfac79d4e2624e9c590110a05607e, type: 2}
+    - target: {fileID: 5190654433990037402, guid: 9c7e86956809bf242acda577df3e9d40, type: 3}
+      propertyPath: dialogueSequence.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5190654433990037402, guid: 9c7e86956809bf242acda577df3e9d40, type: 3}
+      propertyPath: 'dialogueSequence.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: cb8bfac79d4e2624e9c590110a05607e, type: 2}
+    - target: {fileID: 5190654433990037402, guid: 9c7e86956809bf242acda577df3e9d40, type: 3}
+      propertyPath: 'dialogueSequence.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 81fd792daa38ed34a8500873a8b75cf2, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

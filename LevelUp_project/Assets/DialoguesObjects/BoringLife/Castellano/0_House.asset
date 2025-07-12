@@ -10,14 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3bcf64e3cf97d86419e548a17a2a8038, type: 3}
-  m_Name: 03_Roundabout
+  m_Name: 0_House
   m_EditorClassIdentifier: 
   dialogues:
   - characterName: 0
-    text: "Pfff... \xDAltimo trozo para llegar al cole. Qu\xE9 rollo."
+    text: Que rollo ser adulto, mis papis vuelven a trabajar hasta tarde.
   - characterName: 0
-    text: "\xBFPor qu\xE9 me obligan a venir cada d\xEDa?"
-  - characterName: 0
-    text: "Oye, el a\xF1o pasado hab\xEDa unos nen\xFAfares suuuuper guays aqu\xED."
-  - characterName: 0
-    text: "L\xE1stima que ya no est\xE9n."
+    text: "Suerte que a la vuelta podr\xE9 cuidar las plantas de los yayos"

@@ -28,11 +28,11 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField] GameObject dialoguePanel; //Panel del diálogo que contiene el texto del jugador y del PNJ
     [Tooltip("Velocidad del texto (1 = lento, 10 = rápido)")]
-    [SerializeField] [Range(1f, 10f)] float textSpeed = 5f; //Velocidad del texto
+    [SerializeField][Range(1f, 10f)] float textSpeed = 5f; //Velocidad del texto
     [Tooltip("Tiempo máximo (en segundos) hasta que pase automáticamente al siguiente diálogo")]
     [SerializeField] float maxTimeBetweenDialogues = 2.5f; //Tiempo máximo entre diálogos
     private float calculatedSpeed;
-    //!Si queremos añadir interlocutores, crear la lista de miniaturas de cada interlocutor
+    private Language currentLanguage; //Idioma actual del juego, se puede cambiar en el menú opciones
 
 
     void Start()
@@ -62,7 +62,7 @@ public class DialogueManager : MonoBehaviour
                 Text.text = textToFill;
                 yield break; //Salir de la corroutine para no seguir escribiendo
             }
-            if(dialoguePanel.activeSelf == false)
+            if (dialoguePanel.activeSelf == false)
                 ShowDialoguePanel(); //Asegurarse de que el panel de diálogo está visible
 
             yield return new WaitForSeconds(txtSpeed);
@@ -100,8 +100,8 @@ public class DialogueManager : MonoBehaviour
         {
             Dialogue dialogue = dialogueSequence.dialogues[i];
             //Escribir el texto del diálogo
-            calculatedSpeed = 1/(textSpeed*20f); //Reiniciar la velocidad del texto
-            WriteText(text, dialogue.text, calculatedSpeed); 
+            calculatedSpeed = 1 / (textSpeed * 20f); //Reiniciar la velocidad del texto
+            WriteText(text, dialogue.text, calculatedSpeed);
             //Esperar a que el texto se haya escrito completamente
             yield return new WaitUntil(() => text.text == dialogue.text);
             //Al acabar esperar un tiempo antes de continuar con el siguiente diálogo
@@ -110,9 +110,9 @@ public class DialogueManager : MonoBehaviour
             //Esperar a pulsar una tecla para continuar
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0) || time < Time.time);
         }
-        
+
         HideDialoguePanel(); //Ocultar el panel de diálogo al finalizar la secuencia
-        
+
 
         yield return null; //Esperar un frame para asegurar que el panel se ha ocultado correctamente
 
@@ -126,6 +126,19 @@ public class DialogueManager : MonoBehaviour
         //!Aquí se podría añadir la gestión de la miniatura del interlocutor
 
         StartCoroutine(ExecuteDialogueSequence(dialogueSequence));
+    }
+
+    //Método para cambiar el idioma del juego
+    public void ChangeLanguage(int languagueIndex)
+    {
+        currentLanguage = Language.Castellano;
+        currentLanguage += languagueIndex; //Actualizar el idioma actual
+    }
+
+    //Método para obtener el indice del idioma actual
+    public int GetCurrentLanguageIndex()
+    {
+        return (int)currentLanguage; //Devolver el índice del idioma actual
     }
 
 }
