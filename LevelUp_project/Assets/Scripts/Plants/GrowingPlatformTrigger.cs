@@ -4,42 +4,66 @@ using UnityEngine.Splines;
 
 public class GrowingPlatformTrigger : MonoBehaviour
 {
-    [SerializeField] private float timeToGrow;
-    [SerializeField] private SplineExtrude splineExtrude;
-    [SerializeField] private SplineAnimate splineAnimator;
-    private bool isGrowing;
+    [Tooltip("IMPORTANT, THIS VALUE NEEDS TO BE THE SAME AS THE DURATION OF THE SPLINE ANIMATION")]
+    [SerializeField] private float timeToGrowUngrow;
 
+    [Header("Spline references")]
+    [SerializeField] private SplineAnimate splineAnimator;
+    [SerializeField] private SplineExtrude splineExtrude;
+
+
+    private bool isGrowing;
 
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(GrowVine());
-            splineAnimator.Play();
+            StartCoroutine(GrowUnGrowVine(0f,1f));
         }
     }
 
-    private IEnumerator GrowVine()
+    private void OnTriggerExit(Collider other)
     {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            StartCoroutine(WaitForAnimation());
+        }
+    }
+
+    private IEnumerator GrowUnGrowVine(float start, float end)
+    {
+        splineAnimator.Play();
+        float elapsed = 0f;
         isGrowing = true;
 
-        float start = 0f;
-        float end = 1f; // 100%
-        float duration = timeToGrow;
-        float elapsed = 0f;
-
-        while (elapsed < duration)
+        while (elapsed < timeToGrowUngrow)
         {
             elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / duration);
-            splineExtrude.Range = new Vector2(start, Mathf.Lerp(start, end, t));
+            float t = Mathf.Clamp01(elapsed / timeToGrowUngrow);
+
+            //Ease In Ease Out
+            float easedT = t* t* (3f - 2f * t);
+
+            splineExtrude.Range = new Vector2(0, Mathf.Lerp(start, end, easedT));
             splineExtrude.Rebuild();
             yield return null;
         }
 
-        splineExtrude.Range = new Vector2(start, end); //Make sure it ends at 100%
         isGrowing = false;
+        splineAnimator.Pause();
     }
+
+    private IEnumerator WaitForAnimation()
+    {
+        while (isGrowing)
+        {
+            yield return null;
+        }
+
+        StartCoroutine(GrowUnGrowVine(1f, 0f));
+    }
+
+
 }
 
