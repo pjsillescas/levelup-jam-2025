@@ -23,6 +23,8 @@ public class PlayerHealth : MonoBehaviour
     //Gestión del respawn del jugador
     public void Respawn()
     {
+        // Reseteo del padre, por si estaba en una plataforma
+        transform.SetParent(null);
         //Obtener la posición del checkpoint actual
         Vector3 respawnPosition = CheckpointManager.instance.GetSpawnPosition();
 
