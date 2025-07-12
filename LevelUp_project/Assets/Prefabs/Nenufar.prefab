@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1056709281447869103}
   - component: {fileID: 1892422488075825419}
   - component: {fileID: 3005696992857668966}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Nenufar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
