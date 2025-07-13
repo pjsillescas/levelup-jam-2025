@@ -33,8 +33,6 @@ public class OptionsManager : MonoBehaviour
 
     void Start()
     {
-        musicVolume = 1.0f; // Valor inicial del volumen de la música
-        SFXVolume = 1.0f; // Valor inicial del volumen de los efectos de sonido
         SetSliders(); // Establecer los sliders y el dropdown al inicio
     }
 
