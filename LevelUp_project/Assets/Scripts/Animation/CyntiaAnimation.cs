@@ -19,8 +19,18 @@ public class CyntiaAnimation : MonoBehaviour
 		currentDirection = WalkDirection.left;
 	}
 
-	// Start is called once before the first execution of Update after the MonoBehaviour is created
-	void Start()
+    private void OnDisable()
+    {
+        input.Disable();
+    }
+
+    private void OnDestroy()
+    {
+        input.Dispose();
+    }
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
 	{
 		animator = GetComponent<Animator>();
 	}

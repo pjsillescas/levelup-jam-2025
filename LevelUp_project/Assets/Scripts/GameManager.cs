@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
 
+    public static bool isGamePaused;
+
     private void Awake()
     {
         if(instance != null && instance != this)
