@@ -7,14 +7,22 @@ public class Platform : MonoBehaviour
 
 
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            originalRotation = collision.transform.rotation;
-            collision.transform.SetParent(transform);
+            originalRotation = other.transform.rotation;
+            if (transform.parent != null)
+            {
+                other.transform.SetParent(transform.parent);
+            }
+            else
+            {
+                other.transform.SetParent(transform);
 
-            collision.transform.rotation = originalRotation;
+            }
+
+            other.transform.rotation = originalRotation;
         }
     }
 
