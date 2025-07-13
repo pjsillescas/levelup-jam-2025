@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 13315565}
   - component: {fileID: 13315567}
   m_Layer: 0
-  m_Name: TriggerEndCinematic
+  m_Name: CinematicEnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88049,7 +88049,7 @@ PrefabInstance:
     - target: {fileID: 5190654433990037402, guid: 9c7e86956809bf242acda577df3e9d40, type: 3}
       propertyPath: 'dialogueSequence.Array.data[1]'
       value: 
-      objectReference: {fileID: 11400000, guid: 5e6f9a7145f661b4f8a5d33512cfd60c, type: 2}
+      objectReference: {fileID: 11400000, guid: 81fd792daa38ed34a8500873a8b75cf2, type: 2}
     - target: {fileID: 5190654433990037402, guid: 9c7e86956809bf242acda577df3e9d40, type: 3}
       propertyPath: 'dialogueSequence.Array.data[2]'
       value: 
