@@ -100,3 +100,5 @@ InitTestScene*.unity*
 
 #Added by Domenec.
 ProjectSettings/EditorUserSettings.asset
+LevelUp_ProjectSettings/Packages/com.unity.probuilder/Settings.json
+

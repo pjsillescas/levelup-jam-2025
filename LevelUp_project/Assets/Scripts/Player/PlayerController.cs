@@ -60,7 +60,17 @@ namespace player
 			canJump = true;
 		}
 
-		private void Start()
+        private void OnDisable()
+        {
+			input.Disable();
+        }
+
+        private void OnDestroy()
+        {
+			input.Dispose();
+        }
+
+        private void Start()
 		{
 			rb = GetComponent<Rigidbody>();
 			cameraManager = FindFirstObjectByType<CameraManager>();
