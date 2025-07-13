@@ -1,2 +1,2 @@
 
-public enum Language { Castellano, Catalan }
+public enum Language { Castellano, Catalan, English }

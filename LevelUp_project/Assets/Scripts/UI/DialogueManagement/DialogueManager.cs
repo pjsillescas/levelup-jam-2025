@@ -33,6 +33,25 @@ public class DialogueManager : MonoBehaviour
     private float calculatedSpeed;
     private Language currentLanguage; //Idioma actual del juego, se puede cambiar en el menú opciones
 
+    [Header("OptionMenu Texts")]
+    [SerializeField] private TextMeshProUGUI optionTitle;
+    [SerializeField] private TextMeshProUGUI volumeText;
+    [SerializeField] private TextMeshProUGUI languageText;
+    [SerializeField] private TextMeshProUGUI musicText;
+    [SerializeField] private TextMeshProUGUI sfxText;
+    [SerializeField] private TextMeshProUGUI exitButtonText;
+
+
+    [Header("MainMenu Texts")]
+    [SerializeField] private TextMeshProUGUI playText;
+    [SerializeField] private TextMeshProUGUI optionsText;
+    [SerializeField] private TextMeshProUGUI cerditText;
+    [SerializeField] private TextMeshProUGUI exitText;
+
+
+
+
+
 
     void Start()
     {
@@ -132,12 +151,86 @@ public class DialogueManager : MonoBehaviour
     {
         currentLanguage = Language.Castellano;
         currentLanguage += languagueIndex; //Actualizar el idioma actual
+        UpdateUIText(languagueIndex);
     }
 
     //Método para obtener el indice del idioma actual
     public int GetCurrentLanguageIndex()
     {
         return (int)currentLanguage; //Devolver el índice del idioma actual
+    }
+
+    private void UpdateUIText(int languageIndex)
+    {
+        switch (languageIndex)
+        {
+            case 0:
+                {
+                     optionTitle.text = "Opciones";
+                     volumeText.text = "Volumen";
+                     languageText.text = "Idioma";
+                     musicText.text = "Música";
+                     sfxText.text = "Efectos";
+                     exitButtonText.text = "Cerrar Menú";
+
+
+                    if(playText != null)
+                    {
+                        playText.text = "Jugar";
+                        optionsText.text =  "Opciones";
+                        cerditText.text = "Créditos";
+                        exitText.text = "Salir";
+                    }
+
+
+                    break;
+                }
+            case 1:
+                {
+                    optionTitle.text = "Opcions";
+                    volumeText.text = "Volumen";
+                    languageText.text = "Idioma";
+                    musicText.text = "Música";
+                    sfxText.text = "Efectes";
+                    exitButtonText.text = "Tancar Menú";
+
+
+                    if (playText != null)
+                    {
+                        playText.text = "Jugar";
+                        optionsText.text = "Opcions";
+                        cerditText.text = "Crèdits";
+                        exitText.text = "Sortir";
+                    }
+
+
+                    break;
+                }
+            case 2:
+                {
+                    optionTitle.text = "Options";
+                    volumeText.text = "Volumen";
+                    languageText.text = "Language";
+                    musicText.text = "Music";
+                    sfxText.text = "Efects";
+                    exitButtonText.text = "Close";
+
+
+                    if (playText != null)
+                    {
+                        playText.text = "Play";
+                        optionsText.text = "Options";
+                        cerditText.text = "Credits";
+                        exitText.text = "Quit";
+                    }
+
+
+                    break;
+                }
+            default:
+                break;
+
+        }
     }
 
 }

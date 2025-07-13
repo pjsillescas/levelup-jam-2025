@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - characterName: 0
-    text: Avui tornen a treballar fins tard els papes...
+    text: Being a grown-up is soooo boring... Mommy and daddy are working late again.
   - characterName: 0
-    text: "Sort que a la tornada podr\xE9 cuidar del jard\xED dels avis."
+    text: "Good thing I can take care of grandma and grandpa\u2019s plants when I
+      come back!"

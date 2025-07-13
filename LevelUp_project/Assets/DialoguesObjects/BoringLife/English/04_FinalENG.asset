@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - characterName: 0
-    text: "Bueno, ya estoy aqu\xED"
+    text: "Okay, I\u2019m here now."
   - characterName: 0
-    text: Hasta luego, plantitas...
+    text: Bye-bye, little plants...
