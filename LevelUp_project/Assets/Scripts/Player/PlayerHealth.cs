@@ -11,11 +11,14 @@ public class PlayerHealth : MonoBehaviour
     [Header("Respawn Settings")]
     [SerializeField] private float arcHeight = 6.5f; // Altura máxima del arco ajustable desde el inspector
 
+    private PlayerController playerController;
+
     private void Start()
     {
         //Inicializar las referencias
         rb = GetComponent<Rigidbody>();
         playerCollider = GetComponent<Collider>();
+        playerController = GetComponent<PlayerController>();
 
         //Asegurarse de que el jugador está activo al inicio
         gameObject.SetActive(true);
@@ -25,16 +28,20 @@ public class PlayerHealth : MonoBehaviour
     {
         // Reseteo del padre, por si estaba en una plataforma
         transform.SetParent(null);
-        //Obtener la posición del checkpoint actual
-        Vector3 respawnPosition = CheckpointManager.instance.GetSpawnPosition();
 
-        AudioManager.instance.PlaySFX(0); // Reproducir sonido al caer
+        if (playerController.IsSubmerged())
+        {
+			AudioManager.instance.PlaySFX(6); // Reproducir ahogamiento
+		}
 
+		//Obtener la posición del checkpoint actual
+		Vector3 respawnPosition = CheckpointManager.instance.GetSpawnPosition();
+        playerController.SetIsSubmerged(false);
         StartCoroutine(RespawnPlayer(respawnPosition));
-    }
+	}
 
-    //Corrutina para gestionar los tempos de respawn
-    private IEnumerator RespawnPlayer(Vector3 respawnPosition)
+	//Corrutina para gestionar los tempos de respawn
+	private IEnumerator RespawnPlayer(Vector3 respawnPosition)
     {
         //Desactivar el jugador durante el respawn
         SetPlayerActive(false);
@@ -63,8 +70,10 @@ public class PlayerHealth : MonoBehaviour
         // Asegurarse de que la posición final sea exacta
         transform.position = respawnPosition;
 
+		AudioManager.instance.PlaySFX(1); // mejor running, pasitos es demasiado largo // Reproducir sonido al caer
+		
         //Reactivar al jugador
-        SetPlayerActive(true);
+		SetPlayerActive(true);
 
         //! Añadir una animación de parpadeo en el sprite del jugador para indicar el respawn???
     }
@@ -76,7 +85,7 @@ public class PlayerHealth : MonoBehaviour
         playerCollider.enabled = isActive; // Activar o desactivar el Collider
 
         // Desactivar o activar el control del jugador
-        PlayerController playerController = GetComponent<PlayerController>();
+        //PlayerController playerController = GetComponent<PlayerController>();
         if (playerController != null)
         {
             playerController.enabled = isActive;
@@ -90,14 +99,27 @@ public class PlayerHealth : MonoBehaviour
         {
             Respawn(); // Si el jugador colisiona con una zona de muerte de jugador, respawnear
         }
-    }
 
-    //Gestión de la colisión
-    private void OnCollisionEnter(Collision collision)
+		if (other.gameObject.CompareTag("DeathWater"))
+		{
+			playerController.SetIsSubmerged(true);
+			Respawn(); // Si el jugador colisiona con una zona de muerte de jugador, respawnear
+		}
+
+	}
+
+	//Gestión de la colisión
+	private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Death"))
         {
             Respawn(); // Si el jugador colisiona con un objeto de muerte, respawnear
         }
-    }
+		
+        if (collision.gameObject.CompareTag("DeathWater"))
+		{
+            playerController.SetIsSubmerged(true);
+			Respawn(); // Si el jugador colisiona con un objeto de muerte, respawnear
+		}
+	}
 }
