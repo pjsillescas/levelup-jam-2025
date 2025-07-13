@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - characterName: 0
-    text: "L'any passat hi havia uns nen\xFAfars moooolt guays."
+    text: "\xDAltim tro\xE7..."
+  - characterName: 0
+    text: "Ei, l\u2019any passat hi havia uns nen\xFAfars suuuper xulos aqu\xED."
   - characterName: 0
     text: "Ll\xE0stima que ja no hi siguin."

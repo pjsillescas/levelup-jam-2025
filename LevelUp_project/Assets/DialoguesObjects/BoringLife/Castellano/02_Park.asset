@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - characterName: 0
-    text: "Hasta la vuelta parquecito. Espera aqu\xED, \xBFVale?"
+    text: Pasar por el parque de camino a la escuela es terrrrriblee
   - characterName: 0
-    text: ... No creo que vaya a moverse... Jeje
+    text: "\xA1Yo quiero jugar!"
   - characterName: 0
-    text: "No creo, \xBFNo?, pero... Y si s\xED..."
+    text: "Bueno... Hasta la vuelta parquecito. Espera aqu\xED, \xBFVale?"
   - characterName: 0
-    text: Naaaah, no creo.
+    text: A la vuelta seguro que puedo jugar un rato jeje...

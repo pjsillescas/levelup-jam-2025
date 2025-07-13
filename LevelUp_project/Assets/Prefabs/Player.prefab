@@ -5337,6 +5337,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shadowSphere: {fileID: 1378978469590995962}
   shadowHeightOffset: 0.01
+  shadowLayers:
+    serializedVersion: 2
+    m_Bits: 80
 --- !u!95 &4561231285648948815
 Animator:
   serializedVersion: 7

@@ -10,10 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3bcf64e3cf97d86419e548a17a2a8038, type: 3}
-  m_Name: 04_GrannysHouse CAT 1
+  m_Name: 02_GrannysHouseENG
   m_EditorClassIdentifier: 
   dialogues:
   - characterName: 0
-    text: Aaaaviiiis!! Ja hi soc!!
+    text: That went by sooo fast!
   - characterName: 0
-    text: "Oi que avui puc tenir cura del jard\xED amb vosaltres?"
+    text: "Tomorrow I can play pretend the fountain is a volcano\u2014way cooler!"
+  - characterName: 0
+    text: "Graaandpaaaas, I\u2019m hoooome!"
+  - characterName: 0
+    text: Can I help you take care of the garden today, pleeease?

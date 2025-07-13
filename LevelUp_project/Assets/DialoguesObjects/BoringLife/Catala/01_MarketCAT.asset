@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - characterName: 0
-    text: "Alerta aqu\xED, que l'\xFAltima vegada em vaig perdre i em va costar molt
-      trobar al papa."
+    text: "Va... Amb cura, l\u2019\xFAltima vegada que vaig venir amb el pare em
+      vaig perdre i em va costar molt trobar-lo."
   - characterName: 0
-    text: "La gent no mira i \xE9s f\xE0cil que et trepitgin, o t'empenyin, o...
-      Apa! Mira quines flors tan boniques v\xE9nen all\xE0."
+    text: "Per\xF2 m\u2019encanten les coses que venen al mercat... Uau! Quines flors
+      m\xE9s xules venen all\xE0!"

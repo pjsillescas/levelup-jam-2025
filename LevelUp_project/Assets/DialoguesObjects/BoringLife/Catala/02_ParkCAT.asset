@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - characterName: 0
-    text: "Fins despr\xE9s parc, espera'm aqu\xED."
+    text: "Passar pel parc de cam\xED a l\u2019escola \xE9s terriiiibleee."
   - characterName: 0
-    text: ... No crec que es vagi a moure, jejeje...
+    text: Jo vull jugar!
+  - characterName: 0
+    text: "B\xE9... Fins despr\xE9s, parqueeeet. Espera\u2019m aqu\xED, d\u2019acord?"
+  - characterName: 0
+    text: "A la tornada segur que podr\xE9 jugar una estona hehe..."
