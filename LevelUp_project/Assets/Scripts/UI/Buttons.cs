@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
 using TMPro;
+using Unity.VisualScripting;
 //Bajar la prioridad para que se calcule antes el tamaño del texto
 public class Buttons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
@@ -23,7 +24,8 @@ public class Buttons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     //Método para ajustar el tamaño del botón al texto
     public void AdjustButton()
     {
-        StartCoroutine(InitializeCollider()); // Iniciar la corrutina para inicializar el collider
+        if(gameObject.activeInHierarchy) StartCoroutine(InitializeCollider()); // Iniciar la corrutina para inicializar el collider
+
     }
 
     //Corrutina para inicializar el collider después de un frame

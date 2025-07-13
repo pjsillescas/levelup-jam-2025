@@ -6,15 +6,13 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
     private void Awake()
     {
-        if (instance == null)
+        if (instance != null && instance != this)
         {
-            instance = this;
-            // DontDestroyOnLoad(gameObject); // Asegurarse de que el UIManager persista entre escenas
+            Destroy(gameObject);
+            return;
         }
-        else
-        {
-            Destroy(gameObject); // Asegurarse de que solo haya una instancia
-        }
+        instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     [SerializeField] float buttonAnimDuration;
