@@ -354,7 +354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25f54b871c3acc64186c6e16433b34a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToTravelTo: Level_2
+  sceneToTravelTo: Level_1_5
   cinematicDirector: {fileID: 13315567}
   playCinematicOnAwake: 0
   playerController: {fileID: 1986504335}
