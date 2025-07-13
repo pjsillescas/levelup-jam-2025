@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,15 +7,38 @@ public class HiderOnScene : MonoBehaviour
 {
     [SerializeField]
     private string targetSceneName; // Nombre de la escena asignable desde el editor
-    void Awake()
+    [SerializeField] private List<GameObject> uiElementsToHide;
+
+
+    private void OnEnable()
     {
-        if (SceneManager.GetActiveScene().name == targetSceneName)
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+    void OnSceneLoaded(Scene scene,LoadSceneMode mode)
+    {
+        
+        if (scene.name.Equals(targetSceneName))
         {
-            gameObject.SetActive(false); // Esconde el GameObject
+            foreach(GameObject element in uiElementsToHide)
+            {
+                element.SetActive(false);
+            }
+
+
         }
         else
         {
-            gameObject.SetActive(true); // Asegura que el GameObject esté activo en otras escenas
+            foreach (GameObject element in uiElementsToHide)
+            {
+                element.SetActive(true);
+            }
+
         }
     }
 }
