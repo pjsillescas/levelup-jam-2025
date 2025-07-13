@@ -18,6 +18,9 @@ public class CinematicTrigger : MonoBehaviour
     [SerializeField]
     private PlayerController playerController;
 
+    [SerializeField]
+    private int musicIndex = -1; // Índice de la música a reproducir después de la cinemática
+
     private CyntiaAnimation cyntiaAnimation;
     private Animator cyntiaAnimator;
 
@@ -97,6 +100,11 @@ public class CinematicTrigger : MonoBehaviour
 		if (!string.IsNullOrEmpty(sceneToTravelTo)) // Si no está vacío el nombre de la escena
 		{
 			SceneManager.LoadScene(sceneToTravelTo);
+		}
+
+		if (musicIndex >= 0 && AudioManager.instance != null) // Reproducir música si el índice es válido
+		{
+			AudioManager.instance.PlayMusic(musicIndex);
 		}
 	}
 }

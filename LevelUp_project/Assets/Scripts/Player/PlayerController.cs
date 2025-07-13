@@ -54,7 +54,7 @@ namespace player
 		[SerializeField] private ParticleSystem jumpParticles;
 
 
-		private bool isGrounded;
+		private bool isGrounded = true;
 		private Rigidbody rb;
 		private CameraManager cameraManager;
 		private float splineLength;
