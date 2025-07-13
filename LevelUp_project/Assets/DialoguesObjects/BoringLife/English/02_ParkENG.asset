@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - characterName: 0
-    text: "Fins despr\xE9s parc, espera'm aqu\xED."
+    text: Going past the park on the way to school is sooo terrriiibleee!
   - characterName: 0
-    text: ... No crec que es vagi a moure, jejeje...
+    text: I wanna play!
+  - characterName: 0
+    text: Okay... See you later, little park. Wait for me here, okay?
+  - characterName: 0
+    text: I bet I can play a little bit when I come back, hehe...

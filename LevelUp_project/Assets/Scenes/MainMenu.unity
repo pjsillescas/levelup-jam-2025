@@ -1099,6 +1099,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6343399550869576898, guid: 95294518cf0e8644fad70242666187bf, type: 3}
+      propertyPath: 'panelButtons.Array.data[0]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343399550869576898, guid: 95294518cf0e8644fad70242666187bf, type: 3}
+      propertyPath: 'panelButtons.Array.data[1]'
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7501788992024179462, guid: 95294518cf0e8644fad70242666187bf, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1152,7 +1160,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7721291343368112425, guid: 95294518cf0e8644fad70242666187bf, type: 3}
+    - {fileID: 6288686579120702898, guid: 95294518cf0e8644fad70242666187bf, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95294518cf0e8644fad70242666187bf, type: 3}

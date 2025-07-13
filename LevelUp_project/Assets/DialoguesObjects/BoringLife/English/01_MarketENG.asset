@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - characterName: 0
-    text: "Alerta aqu\xED, que l'\xFAltima vegada em vaig perdre i em va costar molt
-      trobar al papa."
+    text: Okay... Careful now, last time I came with Daddy I got lost and it was
+      super hard to find the way.
   - characterName: 0
-    text: "La gent no mira i \xE9s f\xE0cil que et trepitgin, o t'empenyin, o...
-      Apa! Mira quines flors tan boniques v\xE9nen all\xE0."
+    text: But I loooove the things they sell at the market... Wow! Those flowers
+      look sooo pretty!

@@ -2618,7 +2618,6 @@ GameObject:
   - component: {fileID: 3711721189611176029}
   - component: {fileID: 6920542402451343427}
   - component: {fileID: 6482445408772826315}
-  - component: {fileID: 8713122515821596238}
   m_Layer: 5
   m_Name: QuitGame
   m_TagString: Untagged
@@ -2771,19 +2770,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 160, y: 30}
   m_EdgeRadius: 0
---- !u!114 &8713122515821596238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6288686579120702898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2440184a326710647a0c81734750ddab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetSceneName: MainMenu
 --- !u!1 &6326160961711806239
 GameObject:
   m_ObjectHideFlags: 0
@@ -3798,7 +3784,6 @@ GameObject:
   - component: {fileID: 220615122928741719}
   - component: {fileID: 4026992036552702246}
   - component: {fileID: 2394841252597267339}
-  - component: {fileID: 3116076273784866462}
   m_Layer: 5
   m_Name: Restart
   m_TagString: Untagged
@@ -3951,19 +3936,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 160, y: 30}
   m_EdgeRadius: 0
---- !u!114 &3116076273784866462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7721291343368112425}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2440184a326710647a0c81734750ddab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetSceneName: MainMenu
 --- !u!1 &7842906765241898389
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // Asegurarse de que el UIManager persista entre escenas
+            // DontDestroyOnLoad(gameObject); // Asegurarse de que el UIManager persista entre escenas
         }
         else
         {

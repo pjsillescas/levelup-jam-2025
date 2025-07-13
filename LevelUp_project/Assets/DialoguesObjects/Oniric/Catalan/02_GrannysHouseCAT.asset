@@ -10,10 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3bcf64e3cf97d86419e548a17a2a8038, type: 3}
-  m_Name: 04_GrannysHouse CAT 2
+  m_Name: 02_GrannysHouseCAT
   m_EditorClassIdentifier: 
   dialogues:
   - characterName: 0
-    text: Aaaaviiiis!! Ja hi soc!!
+    text: "Que r\xE0pid ha passat tot!"
   - characterName: 0
-    text: "Oi que avui puc tenir cura del jard\xED amb vosaltres?"
+    text: "Dem\xE0 puc jugar a que la font \xE9s un volc\xE0, ser\xE0 encara m\xE9s
+      guai!"
+  - characterName: 0
+    text: Aviiisss, ja he arrivaaaat!
+  - characterName: 0
+    text: "Oi que avui us puc ajudar amb el jard\xED?"

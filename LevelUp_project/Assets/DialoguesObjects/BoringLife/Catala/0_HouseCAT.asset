@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - characterName: 0
-    text: Avui tornen a treballar fins tard els papes...
+    text: Quin rotllo fer-se gran... Els meus papis tornen a treballar fins tard.
   - characterName: 0
-    text: "Sort que a la tornada podr\xE9 cuidar del jard\xED dels avis."
+    text: "Sort que a la tornada podr\xE9 cuidar les plantes dels avis."

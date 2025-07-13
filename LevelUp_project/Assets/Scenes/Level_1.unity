@@ -356,7 +356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToTravelTo: Level_2
   cinematicDirector: {fileID: 13315567}
-  playCinematicOnAwake: 1
+  playCinematicOnAwake: 0
   playerController: {fileID: 1986504335}
 --- !u!320 &13315567
 PlayableDirector:
@@ -85916,7 +85916,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToTravelTo: 
   cinematicDirector: {fileID: 1804587978}
-  playCinematicOnAwake: 0
+  playCinematicOnAwake: 1
   playerController: {fileID: 1986504335}
 --- !u!65 &1804587980
 BoxCollider:
