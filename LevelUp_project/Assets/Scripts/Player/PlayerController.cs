@@ -38,8 +38,13 @@ namespace player
 		[Header("Side Scroller Spline")]
 		[SerializeField]
 		private SplineContainer sideScrollerSpline;
+		
+		[Header("Particle Systems")]
+        [SerializeField] private ParticleSystem walkParticles;
+        [SerializeField] private ParticleSystem jumpParticles;
 
-		private bool isGrounded;
+
+        private bool isGrounded;
 		private Rigidbody rb;
 		private InputActions input;
 		private CameraManager cameraManager;
@@ -74,6 +79,7 @@ namespace player
 			{
 				ApplyMovementSideScroller(-0.1f);
 			}
+
 		}
 
 		void Update()
@@ -81,8 +87,18 @@ namespace player
 			var inputVector = input.Player.Move.ReadValue<Vector2>();
 			ApplyMovement(inputVector);
 
+
+			bool prevGrounded = isGrounded;
 			isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
-			_isOnVine = Physics.CheckSphere(vineCheck.position, vineCheckRadius, vineLayer);
+			if (!prevGrounded && isGrounded)
+			{
+				if(!jumpParticles.isPlaying) jumpParticles.Play();
+				AudioManager.instance.PlaySFX(3);
+            }
+				
+				
+
+                _isOnVine = Physics.CheckSphere(vineCheck.position, vineCheckRadius, vineLayer);
 
 			var jump = input.Player.Jump.WasPressedThisFrame();
 			if (jump && isGrounded && canJump)
@@ -103,6 +119,22 @@ namespace player
 			{
 				ApplyMovementIsometric(moveVector);
 			}
+			if((moveVector.x != 0 || moveVector.z != 0) && isGrounded)
+			{
+                if (!walkParticles.isPlaying)
+				{
+                    walkParticles.Play();
+					AudioManager.instance.PlaySFX(1);
+                }
+                    
+
+			}
+			else
+			{
+				walkParticles.Stop();
+				//Añadir metodo de para el SFX
+			}
+
 		}
 
 		private float GetMoveSpeed()
@@ -113,9 +145,9 @@ namespace player
 
 		private void ApplyMovementSideScroller(float inputX)
 		{
-			if (Mathf.Abs(inputX) < 0.1f) { return; }
+			if (Mathf.Abs(inputX) < 0.1f) return;
 
-			var speed = GetMoveSpeed() / splineLength;
+            var speed = GetMoveSpeed() / splineLength;
 			var deltaMove = -Mathf.Sign(inputX) * speed * Time.deltaTime;
 			distancePercentage = Mathf.Clamp(distancePercentage + deltaMove, 0, 1);
 
@@ -148,6 +180,8 @@ namespace player
 		{
 			rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
 			rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+			jumpParticles.Play();
+			AudioManager.instance.PlaySFX(2);
 		}
 
 		public void SwitchToMode(CameraMode mode)
@@ -156,23 +190,16 @@ namespace player
 
 			if (mode == CameraMode.SideScroller)
 			{
-				SetMaterialFriction(1f);
 				rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
 			}
 			else if (mode == CameraMode.Isometric || mode == CameraMode.Topdown)
 			{
-				SetMaterialFriction(0f);
 				rb.constraints = RigidbodyConstraints.FreezeRotation;
 			}
 
 			cameraManager.SwitchCameraMode(currentMode);
 		}
 
-		private void SetMaterialFriction(float friction)
-		{
-			Debug.Log($"setting friction to {friction}");
-			GetComponent<CapsuleCollider>().sharedMaterial.staticFriction = friction;
-		}
 
 		public void SwitchCameraMode()
 		{
@@ -218,3 +245,4 @@ namespace player
 		}
 	}
 }
+

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bcf64e3cf97d86419e548a17a2a8038, type: 3}
+  m_Name: 03_RoundaboutENG
+  m_EditorClassIdentifier: 
+  dialogues:
+  - characterName: 0
+    text: "L'any passat hi havia uns nen\xFAfars moooolt guays."
+  - characterName: 0
+    text: "Ll\xE0stima que ja no hi siguin."

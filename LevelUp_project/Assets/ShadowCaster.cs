@@ -3,7 +3,6 @@ using UnityEngine;
 public class ShadowCaster : MonoBehaviour
 {
     [SerializeField] private GameObject shadowSphere;
-    [SerializeField] private float offset = 0.5f;
     [SerializeField] private float shadowHeightOffset = 0.01f; // 
 
     private void FixedUpdate()
