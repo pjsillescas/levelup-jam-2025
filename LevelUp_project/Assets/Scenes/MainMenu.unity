@@ -17625,7 +17625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -63735,20 +63735,21 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<b>Direcci\xF3n del juego</b>\nJon Gomez\n\n<b>Arte 2D/3D</b>\nJon Gomez\nJoan
-    Gri\xF1\xE1n\nAlba Hern\xE1ndez\nDomenec Miralles\n\n<b>VFX</b>\nJoan Gri\xF1\xE1n\n\n<b>M\xFAsica/SFX</b>\nJoan
-    Gri\xF1\xE1n\nPixabay.com\n\n<b>Dise\xF1o de niveles</b>\nJon Gomez\n\n<b>Desarrollo</b>\nAxel
-    Garc\xEDa\nDomenec Miralles\nPedro Jes\xFAs S\xE1nchez\n\n\n"
+  m_text: "<b>Game Director</b>\nJon Gomez\n\n<b>Development</b>\nAxel Garc\xEDa\nDomenec
+    Miralles\nPedro Jes\xFAs S\xE1nchez\n\n<b>3D art</b>\nJon Gomez\nJoan Gri\xF1\xE1n\nAlba
+    Hern\xE1ndez\nDomenec Miralles\nIris \"Burbuu\"\n\n<b>VFX and 2D art</b>\nJoan
+    Gri\xF1\xE1n\n\n<b>Music</b>\nJoan Gri\xF1\xE1n\n\n<b>SFX</b>\nJoan Gri\xF1\xE1n\nPixabay.com\n\n<b>Level
+    design</b>\nJon Gomez"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0b08681669e91a64495fee86a1ba9b85, type: 2}
+  m_sharedMaterial: {fileID: 939467728442664530, guid: 0b08681669e91a64495fee86a1ba9b85, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -83545,7 +83546,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "CR\xC9DITOS"
+  m_text: CREDITS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d00005f2c0581d5419ea6d261dbafd31, type: 2}
   m_sharedMaterial: {fileID: -5207376352211829188, guid: d00005f2c0581d5419ea6d261dbafd31, type: 2}
@@ -83554,12 +83555,12 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
-  m_enableVertexGradient: 0
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topLeft: {r: 1, g: 0.85329115, b: 0.08018869, a: 1}
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
