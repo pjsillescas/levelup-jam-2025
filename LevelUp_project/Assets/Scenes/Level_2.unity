@@ -61887,7 +61887,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!64 &435138573
 MeshCollider:
@@ -61902,13 +61902,13 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 1139029926}
 --- !u!33 &435138574
@@ -83793,7 +83793,7 @@ GameObject:
   - component: {fileID: 599775873}
   - component: {fileID: 599775872}
   - component: {fileID: 599775871}
-  m_Layer: 4
+  m_Layer: 0
   m_Name: WaterCylinder_Death
   m_TagString: Death
   m_Icon: {fileID: 0}
@@ -90164,7 +90164,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!320 &623082267
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -309885,6 +309885,7 @@ SceneRoots:
   - {fileID: 1993416257}
   - {fileID: 436031560}
   - {fileID: 435138578}
+  - {fileID: 599775870}
   - {fileID: 1316155860}
   - {fileID: 962882992}
   - {fileID: 1641716804}
@@ -309893,7 +309894,6 @@ SceneRoots:
   - {fileID: 496438057}
   - {fileID: 1499179324}
   - {fileID: 1482536847}
-  - {fileID: 599775870}
   - {fileID: 1445407462}
   - {fileID: 72184266}
   - {fileID: 1057003206}
