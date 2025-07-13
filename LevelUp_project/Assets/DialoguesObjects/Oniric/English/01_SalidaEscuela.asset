@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - characterName: 0
-    text: "\xA1\xA1\xA1Yupiii se acabo la escuela!!!"
+    text: "\xA1Yupiii ya se acab\xF3 la escuela! \xA1\xA1\xA1Por finnn!!!"
   - characterName: 0
     text: "\xA1Qu\xE9 ganas de ir a casa de los yayos!"
   - characterName: 0
     text: "Aunque ya no tengo prisa, \xA1y quiero jugar!"
   - characterName: 0
-    text: "\xBFY si...?"
+    text: "\xBFY si hoy...?"

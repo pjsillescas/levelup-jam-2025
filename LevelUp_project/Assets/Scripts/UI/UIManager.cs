@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement; // Importar para manejar escenas
 
 public class UIManager : MonoBehaviour
 {
@@ -56,6 +57,12 @@ public class UIManager : MonoBehaviour
     public void CloseOptionsMenu()
     {
         optionsManager.CloseMenu(); // Desactivar el menú de opciones
+    }
+
+    // Método para reiniciar la escena actual
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Cargar la escena actual
     }
 
 }
