@@ -2,7 +2,6 @@ using UnityEngine.UI;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
-using UnityEditor.SearchService;
 using TMPro;
 //Bajar la prioridad para que se calcule antes el tamaño del texto
 public class Buttons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
@@ -79,7 +78,6 @@ public class Buttons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     //Corrutina para marcar el botón
     private IEnumerator MarkButtonCoroutine()
     {
-        AdjustButton(); // Asegurarse de que el botón está ajustado antes de marcarlo
         float startValue = buttonImage.fillAmount; // Valor inicial
         float elapsedTime = 0f;
 
