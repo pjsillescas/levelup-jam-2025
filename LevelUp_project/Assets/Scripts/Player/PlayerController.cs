@@ -142,7 +142,7 @@ namespace player
 			else
 			{
 				walkParticles.Stop();
-				//Añadir metodo de para el SFX
+				AudioManager.instance.StopSFX(1);	
 			}
 
 		}
