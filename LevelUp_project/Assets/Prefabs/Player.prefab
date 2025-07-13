@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae3b5b40b2a2728419249fb4b4291ccd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!114 &4675931148316740691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5307,6 +5308,8 @@ MonoBehaviour:
   jumpForce: 7
   airControl: 0.822
   canJump: 0
+  moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  jumpAction: {fileID: -2099379676528639254, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   groundCheck: {fileID: 8156813940417558351}
   groundCheckRadius: 0.1
   groundLayer:
