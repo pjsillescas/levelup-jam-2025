@@ -1,5 +1,6 @@
 using input;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CyntiaAnimation : MonoBehaviour
 {
@@ -11,25 +12,12 @@ public class CyntiaAnimation : MonoBehaviour
 	private InputActions input;
 	private WalkDirection currentDirection;
 
-	private void Awake()
-	{
-		input = new InputActions();
-		input.Enable();
 
-		currentDirection = WalkDirection.left;
-	}
+    [Header("InputActions")]
+    [SerializeField]
+    private InputActionReference moveAction;
 
-    private void OnDisable()
-    {
-        input.Disable();
-    }
-
-    private void OnDestroy()
-    {
-        input.Dispose();
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+  // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
 	{
 		animator = GetComponent<Animator>();
@@ -47,7 +35,7 @@ public class CyntiaAnimation : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		var inputVector = input.Player.Move.ReadValue<Vector2>();
+		var inputVector = moveAction.action.ReadValue<Vector2>();	
 
 		animator.SetBool("IsWalking", inputVector.sqrMagnitude > 0);
 		if(Mathf.Abs(inputVector.x) > 0.1f && Mathf.Abs(inputVector.y) > 0.1f)

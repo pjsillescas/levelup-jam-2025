@@ -1,5 +1,6 @@
 using input;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Splines;
 
 namespace player
@@ -18,6 +19,12 @@ namespace player
 		[SerializeField]
 		private bool canJump;
 
+
+		[Header("InputActions")]
+		[SerializeField]
+		private InputActionReference moveAction;
+		[SerializeField]
+		private InputActionReference jumpAction;
 
 		[Header("GroundCheck")]
 		[SerializeField]
@@ -53,25 +60,21 @@ namespace player
 		private bool _isOnVine;
 		private Quaternion savedRotation;
 
-		void Awake()
-		{
-			input = new InputActions();
-			input.Enable();
-			canJump = true;
-		}
+
+
+        private void OnEnable()
+        {
+			jumpAction.action.started += JumpButtonPressed;
+        }
 
         private void OnDisable()
         {
-			input.Disable();
-        }
-
-        private void OnDestroy()
-        {
-			input.Dispose();
+            jumpAction.action.started -= JumpButtonPressed;
         }
 
         private void Start()
 		{
+			canJump = true;
 			rb = GetComponent<Rigidbody>();
 			cameraManager = FindFirstObjectByType<CameraManager>();
 			SwitchToMode(currentMode);
@@ -92,9 +95,21 @@ namespace player
 
 		}
 
-		void Update()
+
+        private void JumpButtonPressed(InputAction.CallbackContext context)
+        {
+			
+			if(isGrounded && canJump)
+			{
+                ApplyJump();
+
+            }
+
+        }
+
+        void Update()
 		{
-			var inputVector = input.Player.Move.ReadValue<Vector2>();
+			var inputVector = moveAction.action.ReadValue<Vector2>();
 			ApplyMovement(inputVector);
 
 
@@ -110,11 +125,7 @@ namespace player
 
                 _isOnVine = Physics.CheckSphere(vineCheck.position, vineCheckRadius, vineLayer);
 
-			var jump = input.Player.Jump.WasPressedThisFrame();
-			if (jump && isGrounded && canJump)
-			{
-				ApplyJump();
-			}
+
 		}
 
 		private void ApplyMovement(Vector2 inputVector)
