@@ -54,6 +54,7 @@ public class CinematicTrigger : MonoBehaviour
 	{
 		if (other.CompareTag("Player"))
 		{
+			AudioManager.instance.StopSFX(1);
 			Debug.Log($"Iniciando cinemática antes de saltar a '{sceneToTravelTo}'");
 			StartCoroutine(PlayCinematicAndLoadScene());
 		}
