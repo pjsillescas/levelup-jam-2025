@@ -358,6 +358,7 @@ MonoBehaviour:
   cinematicDirector: {fileID: 13315567}
   playCinematicOnAwake: 0
   playerController: {fileID: 1986504335}
+  musicIndex: -1
 --- !u!320 &13315567
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -85919,6 +85920,7 @@ MonoBehaviour:
   cinematicDirector: {fileID: 1804587978}
   playCinematicOnAwake: 1
   playerController: {fileID: 1986504335}
+  musicIndex: 0
 --- !u!65 &1804587980
 BoxCollider:
   m_ObjectHideFlags: 0
