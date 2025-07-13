@@ -964,7 +964,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 62.2
+  m_fontSize: 65.85
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1521,7 +1521,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 29.3
+  m_fontSize: 31
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1883,7 +1883,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 43
+  m_fontSize: 45.55
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2155,7 +2155,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 62.2
+  m_fontSize: 65.85
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3419,6 +3419,12 @@ MonoBehaviour:
   dialoguePanel: {fileID: 6050940006958157932}
   textSpeed: 7.5
   maxTimeBetweenDialogues: 2
+  optionTitle: {fileID: 9002956975856687775}
+  volumeText: {fileID: 1902158626413745805}
+  languageText: {fileID: 3485884262280188686}
+  musicText: {fileID: 116197355531176425}
+  sfxText: {fileID: 5165272742556532460}
+  exitButtonText: {fileID: 2099751748953972834}
 --- !u!1 &7511169474431752511
 GameObject:
   m_ObjectHideFlags: 0
