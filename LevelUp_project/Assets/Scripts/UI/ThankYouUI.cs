@@ -15,21 +15,21 @@ public class ThankYouUI : MonoBehaviour
         {
             case 0:
                 {
-                    thankYouText.text = "Gracias por jugar!";
+                    thankYouText.text = "Â¡Gracias por jugar!";
                     goBackText.text = "Volver al menu";
                     break;
                 }
             case 1:
                 {
-                    thankYouText.text = "Gràcies per jugar!";
-                    goBackText.text = "Tornar al menú";
+                    thankYouText.text = "Grï¿½cies per jugar!";
+                    goBackText.text = "Tornar al menï¿½";
 
                     break;
                 }
             case 2:
                 {
                     thankYouText.text = "Thank you for playing!";
-                    goBackText.text = "Back to menú";
+                    goBackText.text = "Back to menu";
                     break;
                 }
 
