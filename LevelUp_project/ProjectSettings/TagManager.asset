@@ -8,6 +8,9 @@ TagManager:
   - Vehicle
   - waterlily
   - DeathWater
+  - Fader
+  - Portrait
+  - TextBox
   layers:
   - Default
   - TransparentFX
