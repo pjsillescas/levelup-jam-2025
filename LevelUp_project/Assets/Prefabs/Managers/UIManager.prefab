@@ -3431,8 +3431,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 2320212579080040170}
   dialoguePanel: {fileID: 6050940006958157932}
-  textSpeed: 7
-  maxTimeBetweenDialogues: 2.5
+  textSpeed: 7.5
+  maxTimeBetweenDialogues: 2
 --- !u!1 &7511169474431752511
 GameObject:
   m_ObjectHideFlags: 0

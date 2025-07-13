@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - characterName: 0
+    text: "\xDAltimo tramo..."
+  - characterName: 0
     text: "Oye, el a\xF1o pasado hab\xEDa unos nen\xFAfares suuuuper guays aqu\xED."
   - characterName: 0
     text: "L\xE1stima que ya no est\xE9n."

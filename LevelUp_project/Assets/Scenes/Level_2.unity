@@ -83333,7 +83333,7 @@ GameObject:
   - component: {fileID: 599775873}
   - component: {fileID: 599775872}
   - component: {fileID: 599775871}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: WaterCylinder_Death
   m_TagString: Death
   m_Icon: {fileID: 0}
