@@ -1,4 +1,5 @@
-using input;
+using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Splines;
@@ -33,6 +34,8 @@ namespace player
 		private float groundCheckRadius = 0.2f;
 		[SerializeField]
 		private LayerMask groundLayer;
+		[SerializeField]
+		private LayerMask waterLayer;
 
 		[Header("VineCheck")]
 		[SerializeField]
@@ -45,36 +48,43 @@ namespace player
 		[Header("Side Scroller Spline")]
 		[SerializeField]
 		private SplineContainer sideScrollerSpline;
-		
+
 		[Header("Particle Systems")]
-        [SerializeField] private ParticleSystem walkParticles;
-        [SerializeField] private ParticleSystem jumpParticles;
+		[SerializeField] private ParticleSystem walkParticles;
+		[SerializeField] private ParticleSystem jumpParticles;
 
 
-        private bool isGrounded;
+		private bool isGrounded;
 		private Rigidbody rb;
-		private InputActions input;
 		private CameraManager cameraManager;
 		private float splineLength;
 		private float distancePercentage = 0f;
 		private bool _isOnVine;
-		private Quaternion savedRotation;
+		private bool isSubmerged;
 
 
 
-        private void OnEnable()
-        {
+		private void OnEnable()
+		{
 			jumpAction.action.started += JumpButtonPressed;
-        }
+		}
 
-        private void OnDisable()
-        {
-            jumpAction.action.started -= JumpButtonPressed;
-        }
+		private void OnDisable()
+		{
+			jumpAction.action.started -= JumpButtonPressed;
+		}
 
-        private void Start()
+		public void SetIsSubmerged(bool isSubmerged)
+		{
+			this.isSubmerged = isSubmerged;
+		}
+
+		public bool IsSubmerged() => isSubmerged;
+
+		private void Start()
 		{
 			canJump = true;
+			isSubmerged = false;
 			rb = GetComponent<Rigidbody>();
 			cameraManager = FindFirstObjectByType<CameraManager>();
 			SwitchToMode(currentMode);
@@ -96,18 +106,30 @@ namespace player
 		}
 
 
-        private void JumpButtonPressed(InputAction.CallbackContext context)
-        {
-			
-			if(isGrounded && canJump)
+		private void JumpButtonPressed(InputAction.CallbackContext context)
+		{
+
+			if (isGrounded && canJump)
 			{
-                ApplyJump();
+				ApplyJump();
 
-            }
+			}
 
-        }
+		}
 
-        void Update()
+		public bool FellInWater()
+		{
+			return isSubmerged;
+		}
+
+		private bool FellInWaterlily()
+		{
+			const string WATERLILY_TAG = "waterlily";
+			var colliders = Physics.OverlapSphere(groundCheck.position, groundCheckRadius, groundLayer);
+			return colliders.ToList().Select(col => col.CompareTag(WATERLILY_TAG)).Aggregate((carry, val) => carry || val);
+		}
+
+		void Update()
 		{
 			var inputVector = moveAction.action.ReadValue<Vector2>();
 			ApplyMovement(inputVector);
@@ -117,13 +139,23 @@ namespace player
 			isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
 			if (!prevGrounded && isGrounded)
 			{
-				if(!jumpParticles.isPlaying) jumpParticles.Play();
-				AudioManager.instance.PlaySFX(3);
-            }
-				
-				
+				if (!jumpParticles.isPlaying) jumpParticles.Play();
 
-                _isOnVine = Physics.CheckSphere(vineCheck.position, vineCheckRadius, vineLayer);
+				//var colliders = Physics.OverlapSphere(groundCheck.position, groundCheckRadius, groundLayer);
+				//var isWaterLily = colliders.ToList().Select(col => col.CompareTag("waterlily")).Aggregate((carry, val) => carry || val);
+				if (FellInWaterlily())
+				{
+					AudioManager.instance.PlaySFX(5);
+				}
+				else
+				{
+					AudioManager.instance.PlaySFX(3);
+				}
+			}
+
+
+
+			_isOnVine = Physics.CheckSphere(vineCheck.position, vineCheckRadius, vineLayer);
 
 
 		}
@@ -140,20 +172,20 @@ namespace player
 			{
 				ApplyMovementIsometric(moveVector);
 			}
-			if((moveVector.x != 0 || moveVector.z != 0) && isGrounded)
+			if ((moveVector.x != 0 || moveVector.z != 0) && isGrounded)
 			{
-                if (!walkParticles.isPlaying)
+				if (!walkParticles.isPlaying)
 				{
-                    walkParticles.Play();
+					walkParticles.Play();
 					AudioManager.instance.PlaySFX(1);
-                }
-                    
+				}
+
 
 			}
 			else
 			{
 				walkParticles.Stop();
-				AudioManager.instance.StopSFX(1);	
+				AudioManager.instance.StopSFX(1);
 			}
 
 		}
@@ -168,7 +200,7 @@ namespace player
 		{
 			if (Mathf.Abs(inputX) < 0.1f) return;
 
-            var speed = GetMoveSpeed() / splineLength;
+			var speed = GetMoveSpeed() / splineLength;
 			var deltaMove = -Mathf.Sign(inputX) * speed * Time.deltaTime;
 			distancePercentage = Mathf.Clamp(distancePercentage + deltaMove, 0, 1);
 
@@ -227,17 +259,6 @@ namespace player
 			currentMode = currentMode == CameraMode.SideScroller ? CameraMode.Isometric : CameraMode.SideScroller;
 
 			SwitchToMode(currentMode);
-		}
-
-		public void SaveRotation()
-		{
-			savedRotation = transform.rotation;
-		}
-
-		public void RestoreRotation()
-		{
-			//transform.rotation = savedRotation;
-			transform.rotation = Quaternion.identity;
 		}
 
 		public bool IsJumpEnabled()

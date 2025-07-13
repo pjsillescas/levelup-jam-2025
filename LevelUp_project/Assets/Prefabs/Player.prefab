@@ -5315,6 +5315,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  waterLayer:
+    serializedVersion: 2
+    m_Bits: 16
   vineCheck: {fileID: 7164714879599533069}
   vineCheckRadius: 2
   vineLayer:
