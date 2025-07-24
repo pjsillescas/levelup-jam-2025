@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using input;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -48,7 +49,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI cerditText;
     [SerializeField] private TextMeshProUGUI exitText;
 
-
+    private bool isDialogueSpeed;
 
 
 
@@ -56,6 +57,18 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         HideDialoguePanel(); //Asegurarse de que el panel de diálogo está oculto al inicio del juego
+		isDialogueSpeed = false;
+        InputManager.OnInputDialogueSpeedPressed += OnInputDialogueSpeedPressed;
+    }
+
+	private void OnDestroy()
+	{
+		InputManager.OnInputDialogueSpeedPressed -= OnInputDialogueSpeedPressed;
+	}
+
+	private void OnInputDialogueSpeedPressed(object sender, EventArgs args)
+    {
+        isDialogueSpeed = true;
     }
 
 
@@ -74,8 +87,9 @@ public class DialogueManager : MonoBehaviour
         //Bucle para escribir los carácteres uno a uno
         foreach (char c in textToFill)
         {
-            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && time < Time.time)
+            if (isDialogueSpeed && time < Time.time)
             {
+				isDialogueSpeed = false;
                 //Si se pulsa espacio, se salta la animación de escritura y se muestra el texto completo
                 Text.text = textToFill;
                 yield break; //Salir de la corroutine para no seguir escribiendo
@@ -126,7 +140,8 @@ public class DialogueManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             float time = Time.time + maxTimeBetweenDialogues; //Tiempo máximo para esperar antes de continuar
             //Esperar a pulsar una tecla para continuar
-            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0) || time < Time.time);
+            yield return new WaitUntil(() => isDialogueSpeed || time < Time.time);
+			isDialogueSpeed = false;
         }
 
         HideDialoguePanel(); //Ocultar el panel de diálogo al finalizar la secuencia

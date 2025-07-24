@@ -21,6 +21,12 @@ public class CyntiaAnimation : MonoBehaviour
     void Start()
 	{
 		animator = GetComponent<Animator>();
+		InputManager.OnInputMove += OnInputMove;
+	}
+
+	private void OnDestroy()
+	{
+		InputManager.OnInputMove -= OnInputMove;
 	}
 
 	private void SetDirection(WalkDirection direction)
@@ -33,10 +39,8 @@ public class CyntiaAnimation : MonoBehaviour
 	}
 
 	// Update is called once per frame
-	void Update()
+	void OnInputMove(object sender, Vector2 inputVector)
 	{
-		var inputVector = moveAction.action.ReadValue<Vector2>();	
-
 		animator.SetBool("IsWalking", inputVector.sqrMagnitude > 0);
 		if(Mathf.Abs(inputVector.x) > 0.1f && Mathf.Abs(inputVector.y) > 0.1f)
 		{
