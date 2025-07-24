@@ -1,66 +1,74 @@
+using input;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement; // Importar para manejar escenas
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager instance;
-    private void Awake()
-    {
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        instance = this;
-        DontDestroyOnLoad(gameObject);
-    }
+	public static UIManager instance;
+	private void Awake()
+	{
+		if (instance != null && instance != this)
+		{
+			Destroy(gameObject);
+			return;
+		}
+		instance = this;
+		DontDestroyOnLoad(gameObject);
+	}
 
-    [SerializeField] float buttonAnimDuration;
-    [SerializeField] private OptionsManager optionsManager;
+	[SerializeField] float buttonAnimDuration;
+	[SerializeField] private OptionsManager optionsManager;
 
-    void Start()
-    {
-        CloseOptionsMenu(); // Asegurarse de que el menú de opciones esté cerrado al inicio
-    }
+	void Start()
+	{
+		CloseOptionsMenu(); // Asegurarse de que el menú de opciones esté cerrado al inicio
+		InputManager.OnInputPausePressed += OnPausePressed;
+	}
 
-    void Update()
-    {
-        // Aquí se pueden manejar eventos de UI globales, como abrir el menú de opciones con una tecla
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (optionsManager.IsMenuOpen())
-            {
-                CloseOptionsMenu();
-            }
-            else
-            {
-                OpenOptionsMenu();
-            }
-        }
-    }
+	private void OnDestroy()
+	{
+		InputManager.OnInputPausePressed -= OnPausePressed;
+	}
 
-    //Método para obtener la duración de la animación del botón
-    public float GetButtonAnimDuration()
-    {
-        return buttonAnimDuration; // Retornar la duración de la animación del botón
-    }
+	private void OnPausePressed(object sender, EventArgs args)
+	{
+		if (optionsManager.IsMenuOpen())
+		{
+			CloseOptionsMenu();
+		}
+		else
+		{
+			OpenOptionsMenu();
+		}
+	}
+	void Update()
+	{
+		// Aquí se pueden manejar eventos de UI globales, como abrir el menú de opciones con una tecla
+	}
 
-    //Método para abrir el menú de opciones
-    public void OpenOptionsMenu()
-    {
-        optionsManager.OpenMenu(); // Activar el menú de opciones
-    }
+	//Método para obtener la duración de la animación del botón
+	public float GetButtonAnimDuration()
+	{
+		return buttonAnimDuration; // Retornar la duración de la animación del botón
+	}
 
-    //Método para cerrar el menú de opciones
-    public void CloseOptionsMenu()
-    {
-        optionsManager.CloseMenu(); // Desactivar el menú de opciones
-    }
+	//Método para abrir el menú de opciones
+	public void OpenOptionsMenu()
+	{
+		optionsManager.OpenMenu(); // Activar el menú de opciones
+	}
 
-    // Método para reiniciar la escena actual
-    public void Restart()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Cargar la escena actual
-    }
+	//Método para cerrar el menú de opciones
+	public void CloseOptionsMenu()
+	{
+		optionsManager.CloseMenu(); // Desactivar el menú de opciones
+	}
+
+	// Método para reiniciar la escena actual
+	public void Restart()
+	{
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Cargar la escena actual
+	}
 
 }

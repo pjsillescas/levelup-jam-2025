@@ -5209,6 +5209,8 @@ GameObject:
   - component: {fileID: 8662861762264195424}
   - component: {fileID: 906910095953337611}
   - component: {fileID: 6724065106376052285}
+  - component: {fileID: 1271104643283039463}
+  - component: {fileID: 3707851267287179300}
   - component: {fileID: 8416189366310057157}
   - component: {fileID: 4561231285648948815}
   - component: {fileID: 5694038714684986479}
@@ -5324,6 +5326,36 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   sideScrollerSpline: {fileID: 0}
+  walkParticles: {fileID: 3801292722369281652}
+  jumpParticles: {fileID: 4034988983102207599}
+--- !u!114 &1271104643283039463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6142166552380369104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95288f2a7633f0a4b9e3d102ffe5cb5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  jumpAction: {fileID: -2099379676528639254, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  pauseAction: {fileID: -7716021405794678111, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  dialogueSpeedAction: {fileID: 485625834446759014, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+--- !u!114 &3707851267287179300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6142166552380369104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f5d5c698ce6a044cb5bf45fcba0b91f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   walkParticles: {fileID: 3801292722369281652}
   jumpParticles: {fileID: 4034988983102207599}
 --- !u!114 &8416189366310057157
