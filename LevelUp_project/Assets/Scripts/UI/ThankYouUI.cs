@@ -11,20 +11,20 @@ public class ThankYouUI : MonoBehaviour
     {
     int languageIndex =  DialogueManager.instance.GetCurrentLanguageIndex();
 
-        switch (languageIndex)
+		switch (languageIndex)
         {
             case 0:
                 {
                     thankYouText.text = "¡Gracias por jugar!";
-                    goBackText.text = "Volver al menu";
+                    goBackText.text = "Volver al menú";
                     break;
                 }
             case 1:
                 {
-                    thankYouText.text = "Gr�cies per jugar!";
-                    goBackText.text = "Tornar al men�";
+					thankYouText.text = "Gràcies per jugar!";
+					goBackText.text = "Tornar al menú";
 
-                    break;
+					break;
                 }
             case 2:
                 {

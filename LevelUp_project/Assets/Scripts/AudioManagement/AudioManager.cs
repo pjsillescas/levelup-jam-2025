@@ -39,7 +39,10 @@ public class AudioManager : MonoBehaviour
     {
         foreach (AudioSource music in musicList)
         {
-            music.Stop(); // Detener todas las fuentes de música
+            if (music != null)
+            {
+                music.Stop(); // Detener todas las fuentes de música
+            }
         }
     }
 

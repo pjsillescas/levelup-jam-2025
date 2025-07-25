@@ -24,6 +24,11 @@ namespace player
 		[SerializeField, Range(0f, 1f)]
 		private float airControl = 0.43f;
 		[SerializeField]
+		private float fallControl = 2.5f;
+		[SerializeField]
+		private float coyoteTime = 0.2f;
+
+		[SerializeField]
 		private bool canJump;
 
 		[Header("GroundCheck")]
@@ -55,6 +60,8 @@ namespace player
 		private float distancePercentage = 0f;
 		private bool _isOnVine;
 		private bool isSubmerged;
+		private float coyoteTimer;
+
 
 
 		public void SetIsSubmerged(bool isSubmerged)
@@ -98,10 +105,15 @@ namespace player
 
 		private void OnInputJump(object sender, EventArgs args)
 		{
-			if (isGrounded && canJump)
+			if (canJump)
 			{
-				OnJump?.Invoke(this, EventArgs.Empty);
-				ApplyJump();
+				if (isGrounded || coyoteTimer > 0)
+				{
+					OnJump?.Invoke(this, EventArgs.Empty);
+					ApplyJump();
+
+					coyoteTimer = 0f;
+				}
 			}
 		}
 
@@ -126,14 +138,20 @@ namespace player
 				var groundType = (FellInWaterlily()) ? GroundType.Waterlily : GroundType.Ground;
 				OnGrounded?.Invoke(this, groundType);
 			}
+			ProcessCoyoteTime();
 
 			_isOnVine = Physics.CheckSphere(vineCheck.position, vineCheckRadius, vineLayer);
+		}
+
+		private void ProcessCoyoteTime()
+		{
+			coyoteTimer = (isGrounded) ? coyoteTime : coyoteTimer - Time.deltaTime;
 		}
 
 		private void ApplyMovement(Vector2 inputVector)
 		{
 			OnMove?.Invoke(this, inputVector);
-			
+
 			var moveVector = new Vector3(inputVector.x, 0f, inputVector.y);
 
 			if (currentMode == CameraMode.SideScroller)
@@ -239,6 +257,15 @@ namespace player
 		public CameraMode GetCurrentCameraMode()
 		{
 			return currentMode;
+		}
+
+		void FixedUpdate()
+		{
+			// Fall control
+			if (rb.linearVelocity.y < 0)
+			{
+				rb.linearVelocity += (fallControl * Physics.gravity.y * Time.fixedDeltaTime) * Vector3.up;
+			}
 		}
 	}
 }
