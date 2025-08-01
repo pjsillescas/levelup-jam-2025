@@ -98,6 +98,7 @@ public class OptionsManager : MonoBehaviour
         gameObject.SetActive(true); // Activar el menú de opciones
         AdjustButtons(); // Ajustar los botones del panel de opciones
         SetSliders(); // Establecer los sliders al valor actual
+        GamepadOptionsManager.instance.InitializeButtons(); // Inicializar los botones del menú de opciones
     }
 
     //Método para obtener si el menú de opciones está abierto

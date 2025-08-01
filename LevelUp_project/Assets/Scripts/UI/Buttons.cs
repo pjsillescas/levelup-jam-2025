@@ -1,17 +1,19 @@
 using UnityEngine.UI;
 using UnityEngine;
 using System.Collections;
+using System;
 using UnityEngine.EventSystems;
 using TMPro;
-using Unity.VisualScripting;
 //Bajar la prioridad para que se calcule antes el tamaño del texto
 public class Buttons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
     [SerializeField] Image buttonImage; // Referencia a la imagen del botón que se anima
     [SerializeField] GameObject buttonText;
+    enum ButtonType { Play, OpenOptions, CloseOptions, StartCredits, CloseCredits, Restart, Exit } // Tipos de botones
+    [SerializeField] ButtonType buttonType; // Tipo de botón para identificar su acción
     float duration;
     BoxCollider2D col;
-
+    public event Action<Buttons> OnButtonMarked; // Evento para avisar qué botón está marcado
 
     void Start()
     {
@@ -24,7 +26,7 @@ public class Buttons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     //Método para ajustar el tamaño del botón al texto
     public void AdjustButton()
     {
-        if(gameObject.activeInHierarchy) StartCoroutine(InitializeCollider()); // Iniciar la corrutina para inicializar el collider
+        if (gameObject.activeInHierarchy) StartCoroutine(InitializeCollider()); // Iniciar la corrutina para inicializar el collider
 
     }
 
@@ -50,7 +52,7 @@ public class Buttons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
 
     #region Button Marking
     //Método para desmarcar el botón
-    private void UnmarkButton()
+    public void UnmarkButton()
     {
         StartCoroutine(UnmarkButtonCoroutine()); // Iniciar la corrutina para desmarcar el botón
     }
@@ -60,7 +62,7 @@ public class Buttons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     {
         float startValue = buttonImage.fillAmount; // Valor inicial
         float elapsedTime = 0f;
-
+        if (startValue == 0f) yield break; // Si el botón ya está desmarcado, salir de la corrutina
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
@@ -72,14 +74,17 @@ public class Buttons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     }
 
     //Método para marcar el botón
-    private void MarkButton()
+    public void MarkButton()
     {
+        OnButtonMarked?.Invoke(this); // Invocar el evento y pasar el botón marcado
         StartCoroutine(MarkButtonCoroutine()); // Iniciar la corrutina para marcar el botón
     }
 
     //Corrutina para marcar el botón
     private IEnumerator MarkButtonCoroutine()
     {
+        AdjustButton();
+        yield return null; // Esperar un frame para asegurarse de que el botón está ajustado
         float startValue = buttonImage.fillAmount; // Valor inicial
         float elapsedTime = 0f;
 
@@ -94,13 +99,15 @@ public class Buttons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     }
 
     //Método para seleccionar el botón
-    private void ClickingButton()
+    public void ClickingButton()
     {
         buttonImage.color = new Color(0.25f, 0.25f, 0.25f, 0.75f); // Cambiar el color del botón a gris al seleccionarlo
+        ActionButton(); // Llamar al método de acción del botón
+        UnclickButton(); // Desmarcar el botón después de hacer clic
     }
 
     //Método para deseleccionar el botón
-    private void UnclickButton()
+    public void UnclickButton()
     {
         buttonImage.color = new Color(1f, 1f, 1f, 0.75f); // Cambiar el color del botón a blanco con transparencia al deseleccionarlo
     }
@@ -128,7 +135,6 @@ public class Buttons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     {
         UnclickButton(); // Desmarcar el botón al dejar de hacer clic
     }
-
     #endregion
 
     #region Buttons actions
@@ -157,6 +163,52 @@ public class Buttons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
         UIManager.instance.CloseOptionsMenu(); // Cerrar el menú de opciones
     }
 
+    //Método para abrir el menú de créditos
+    public void OpenCreditsMenu()
+    {
+        CreditsManager.instance.StartCredits(); // Iniciar los créditos
+    }
+
+    //Método para cerrar el menú de créditos
+    public void CloseCreditsMenu()
+    {
+        CreditsManager.instance.CloseCredits(); // Cerrar los créditos
+    }
+
+    //Método para llamar a reiniciar nivel
+    public void RestartLevel()
+    {
+        UIManager.instance.Restart(); // Reiniciar la escena actual
+    }
+
 
     #endregion
+
+    public void ActionButton()
+    {
+        switch (buttonType)
+        {
+            case ButtonType.Play:
+                PlayGame();
+                break;
+            case ButtonType.OpenOptions:
+                OpenOptionsMenu();
+                break;
+            case ButtonType.CloseOptions:
+                CloseOptionsMenu(); // Cerrar el menú de opciones
+                break;
+            case ButtonType.StartCredits:
+                OpenCreditsMenu();
+                break;
+            case ButtonType.CloseCredits:
+                CloseCreditsMenu(); // Cerrar los créditos
+                break;
+            case ButtonType.Restart:
+                RestartLevel();
+                break;
+            case ButtonType.Exit:
+                ExitGame();
+                break;
+        }
+    }
 }
