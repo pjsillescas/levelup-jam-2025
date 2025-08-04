@@ -54,6 +54,7 @@ public class Buttons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     //Método para desmarcar el botón
     public void UnmarkButton()
     {
+        StopAllCoroutines(); // Detener todas las corrutinas para evitar conflictos
         StartCoroutine(UnmarkButtonCoroutine()); // Iniciar la corrutina para desmarcar el botón
     }
 
@@ -77,6 +78,7 @@ public class Buttons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     public void MarkButton()
     {
         OnButtonMarked?.Invoke(this); // Invocar el evento y pasar el botón marcado
+        StopAllCoroutines(); // Detener todas las corrutinas para evitar conflictos
         StartCoroutine(MarkButtonCoroutine()); // Iniciar la corrutina para marcar el botón
     }
 

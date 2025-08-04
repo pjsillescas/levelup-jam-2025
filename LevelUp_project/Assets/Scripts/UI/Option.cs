@@ -106,7 +106,6 @@ public class Option : MonoBehaviour
     // Método para gestionar la acción de clic
     public virtual void OnOptionSelected()
     {
-        Debug.Log("Opción seleccionada: " + optionText.text);
         switch (optionType)
         {
             case OptionType.Scrollbar:
@@ -114,7 +113,7 @@ public class Option : MonoBehaviour
             case OptionType.Dropdown:
                 TMP_Dropdown dropdown = optionSetting.GetComponent<TMP_Dropdown>();
                 
-                if (isActive)
+                if (!GamepadOptionsManager.instance.canNavigate)
                 {
                     dropdown.Show(); // Mostrar el dropdown si está activo
                     isActive = false; // Cambiar el estado a inactivo
