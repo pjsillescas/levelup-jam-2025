@@ -46,8 +46,9 @@ public class DialogueManager : MonoBehaviour
     [Header("MainMenu Texts")]
     [SerializeField] private TextMeshProUGUI playText;
     [SerializeField] private TextMeshProUGUI optionsText;
-    [SerializeField] private TextMeshProUGUI cerditText;
+    [SerializeField] private TextMeshProUGUI creditText;
     [SerializeField] private TextMeshProUGUI exitText;
+    [SerializeField] private TextMeshProUGUI closeCreditsText;
 
     private bool isDialogueSpeed;
 
@@ -189,12 +190,13 @@ public class DialogueManager : MonoBehaviour
                      exitButtonText.text = "Cerrar Menú";
 
 
-                    if(playText != null)
+                    if (playText != null)
                     {
                         playText.text = "Jugar";
-                        optionsText.text =  "Opciones";
-                        cerditText.text = "Créditos";
+                        optionsText.text = "Opciones";
+                        creditText.text = "Créditos";
                         exitText.text = "Salir";
+                        closeCreditsText.text = "Cerrar Créditos";
                     }
 
 
@@ -203,7 +205,7 @@ public class DialogueManager : MonoBehaviour
             case 1:
                 {
                     optionTitle.text = "Opcions";
-                    volumeText.text = "Volumen";
+                    volumeText.text = "Volum";
                     languageText.text = "Idioma";
                     musicText.text = "Música";
                     sfxText.text = "Efectes";
@@ -214,8 +216,9 @@ public class DialogueManager : MonoBehaviour
                     {
                         playText.text = "Jugar";
                         optionsText.text = "Opcions";
-                        cerditText.text = "Crèdits";
+                        creditText.text = "Crèdits";
                         exitText.text = "Sortir";
+                        closeCreditsText.text = "Tancar Crèdits";
                     }
 
 
@@ -224,10 +227,10 @@ public class DialogueManager : MonoBehaviour
             case 2:
                 {
                     optionTitle.text = "Options";
-                    volumeText.text = "Volumen";
+                    volumeText.text = "Volume";
                     languageText.text = "Language";
                     musicText.text = "Music";
-                    sfxText.text = "Efects";
+                    sfxText.text = "Effects";
                     exitButtonText.text = "Close";
 
 
@@ -235,8 +238,9 @@ public class DialogueManager : MonoBehaviour
                     {
                         playText.text = "Play";
                         optionsText.text = "Options";
-                        cerditText.text = "Credits";
+                        creditText.text = "Credits";
                         exitText.text = "Quit";
+                        closeCreditsText.text = "Close Credits";
                     }
 
 

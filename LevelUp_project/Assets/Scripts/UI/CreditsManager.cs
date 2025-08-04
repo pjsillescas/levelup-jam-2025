@@ -13,6 +13,20 @@ public class CreditsManager : MonoBehaviour
     float endYPosition; // Posición final en Y (anchoredPosition)
     Vector2 startPosition; // Posición inicial en Y (anchoredPosition)
 
+    public static CreditsManager instance; // Instancia estática para acceso global
+    private void Awake()
+    {
+        // Asegurarse de que solo haya una instancia de CreditsManager
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void Start()
     {
         // Referencia al RectTransform para acceder fácilmente a sus propiedades
@@ -86,6 +100,13 @@ public class CreditsManager : MonoBehaviour
         // Calculo de la Y final en anchoredPosition
         float startY = rt.anchoredPosition.y;
         endYPosition = startY + totalHeight + 100f; // Añadimos un margen de 100 para que no se corte
+    }
+
+    //Método para cerrar los créditos
+    public void CloseCredits()
+    {
+        StopAllCoroutines(); // Detener todas las corrutinas relacionadas con los créditos
+        panelCredits.SetActive(false); // Desactivar el panel de créditos
     }
 
 }
