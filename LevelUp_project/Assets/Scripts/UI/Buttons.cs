@@ -9,7 +9,7 @@ public class Buttons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
 {
     [SerializeField] Image buttonImage; // Referencia a la imagen del botón que se anima
     [SerializeField] GameObject buttonText;
-    enum ButtonType { Play, OpenOptions, CloseOptions, StartCredits, CloseCredits, Restart, Exit } // Tipos de botones
+    enum ButtonType { Play, OpenOptions, CloseOptions, StartCredits, CloseCredits, Restart, Exit, ReturnToMainMenu } // Tipos de botones
     [SerializeField] ButtonType buttonType; // Tipo de botón para identificar su acción
     float duration;
     BoxCollider2D col;
@@ -183,6 +183,11 @@ public class Buttons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
         UIManager.instance.Restart(); // Reiniciar la escena actual
     }
 
+    //Método para volver al menú principal
+    public void ReturnToMainMenu()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0); // Cargar la escena del menú principal (asumiendo que es la escena 0)
+    }
 
     #endregion
 
@@ -211,6 +216,17 @@ public class Buttons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
             case ButtonType.Exit:
                 ExitGame();
                 break;
+            case ButtonType.ReturnToMainMenu:
+                ReturnToMainMenu();
+                break;
+        }
+    }
+
+    void Update()
+    {
+        if (buttonType == ButtonType.CloseCredits && Input.GetButtonDown("Cancel"))
+        {
+            CloseCreditsMenu(); // Trigger CloseCreditsMenu when UI/cancel input is detected
         }
     }
 }
