@@ -749,6 +749,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 67955388406415199, guid: 95294518cf0e8644fad70242666187bf, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 67955388406415199, guid: 95294518cf0e8644fad70242666187bf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 67955388406415199, guid: 95294518cf0e8644fad70242666187bf, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3536919761620860808, guid: 95294518cf0e8644fad70242666187bf, type: 3}
       propertyPath: m_Name
       value: UIManager
@@ -759,6 +771,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5569375957759660559, guid: 95294518cf0e8644fad70242666187bf, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6281687732346868971, guid: 95294518cf0e8644fad70242666187bf, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6281687732346868971, guid: 95294518cf0e8644fad70242666187bf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6281687732346868971, guid: 95294518cf0e8644fad70242666187bf, type: 3}
+      propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8155818811681380171, guid: 95294518cf0e8644fad70242666187bf, type: 3}
@@ -964,6 +988,10 @@ PrefabInstance:
     - target: {fileID: 2323135487840883947, guid: ac4b1132e4033c342b736d1ebfd76321, type: 3}
       propertyPath: m_HorizontalFit
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3946031368362953167, guid: ac4b1132e4033c342b736d1ebfd76321, type: 3}
+      propertyPath: buttonType
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6611668403237680830, guid: ac4b1132e4033c342b736d1ebfd76321, type: 3}
       propertyPath: m_text
