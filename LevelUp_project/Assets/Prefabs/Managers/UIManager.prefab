@@ -909,7 +909,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 62.15
+  m_fontSize: 62.2
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2035,15 +2035,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ec4e551f51c6b14a913a96abc0d6b52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicVolume: 0.7
-  SFXVolume: 0.7
+  musicVolume: 0.4
+  SFXVolume: 0.3
   musicVolumeSlider: {fileID: 4056904764375625723}
   SFXVolumeSlider: {fileID: 7089861633911651841}
   panelButtons:
   - {fileID: 3711721189611176029}
   - {fileID: 220615122928741719}
   - {fileID: 8037593310506025551}
-  gamepadOptionsManager: {fileID: 4293014996842582512}
 --- !u!114 &4293014996842582512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2161,7 +2160,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 62.15
+  m_fontSize: 62.2
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3761,8 +3760,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5447031140886313443}
   m_HandleRect: {fileID: 6281687732346868971}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.7333332
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
