@@ -213,4 +213,12 @@ public class Buttons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
                 break;
         }
     }
+
+    void Update()
+    {
+        if (buttonType == ButtonType.CloseCredits && Input.GetButtonDown("Cancel"))
+        {
+            CloseCreditsMenu(); // Trigger CloseCreditsMenu when UI/cancel input is detected
+        }
+    }
 }
