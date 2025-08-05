@@ -18,7 +18,7 @@ public class GrowVineManager : MonoBehaviour
     private float minGrow = 0.2f;
     [SerializeField]
     [Range(0f, 1f)]
-    private float maxGrow = 0.97f;
+    private float maxGrow = 0.99f;
 
     List<Material> _growVineMaterials = new List<Material>();
     private bool fullyGrown;
@@ -37,12 +37,28 @@ public class GrowVineManager : MonoBehaviour
                     _growVineMaterials.Add(growVineMeshes[i].materials[j]);
                 }
             }
-        }       
+        }  
+
+        foreach(Material mat in _growVineMaterials)
+        {
+            mat.SetFloat("Grow_", 0f);
+        }
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            ToggleVines();
+            gameObject.GetComponent<BoxCollider>().enabled = false;
+
+        }
     }
 
     /*
      Grows and ungrows the vine with the shader.
-     */ 
+     */
     public void ToggleVines()
     {
         for (int i = 0; i < _growVineMaterials.Count; i++)
