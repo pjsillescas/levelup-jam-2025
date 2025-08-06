@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GrowVinesShader
+  m_Name: GrowVinesShader_c
   m_Shader: {fileID: -6465566751694194690, guid: 6115e10699074a84db413d5a994a3fe7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -40,7 +40,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Grow_: 0.99
+    - Grow_: 1
     - _AlphaClip: 1
     - _AlphaToMask: 1
     - _Blend: 0

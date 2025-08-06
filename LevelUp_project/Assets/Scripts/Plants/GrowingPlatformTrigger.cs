@@ -1,69 +1,61 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Splines;
 
 public class GrowingPlatformTrigger : MonoBehaviour
 {
-    [Tooltip("IMPORTANT, THIS VALUE NEEDS TO BE THE SAME AS THE DURATION OF THE SPLINE ANIMATION")]
-    [SerializeField] private float timeToGrowUngrow;
+    [Tooltip("Duration in seconds for full grow or shrink")]
+    [SerializeField] private float timeToGrowUngrow = 2f;
 
     [Header("Spline references")]
     [SerializeField] private SplineAnimate splineAnimator;
     [SerializeField] private SplineExtrude splineExtrude;
 
+    [Header("Extrusion range")]
+    [SerializeField] private float startValue = 0f;
+    [SerializeField] private float endValue = 1f;
 
-    private bool isGrowing;
+    private float currentValue = 0f; // Normalized progress (0 to 1)
+    private bool isGrowing = false;
 
+    private float animationDuration => splineAnimator.Duration;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            StartCoroutine(GrowUnGrowVine(0f,1f));
+            isGrowing = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            StartCoroutine(WaitForAnimation());
+            isGrowing = false;
         }
     }
 
-    private IEnumerator GrowUnGrowVine(float start, float end)
+    private void Update()
     {
-        splineAnimator.Play();
-        float elapsed = 0f;
-        isGrowing = true;
+        float direction = isGrowing ? 1f : -1f;
+        float speed = 1f / timeToGrowUngrow;
 
-        while (elapsed < timeToGrowUngrow)
+        // Only update while within valid range
+        if ((isGrowing && currentValue < 1f) || (!isGrowing && currentValue > 0f))
         {
-            elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / timeToGrowUngrow);
+            currentValue += direction * speed * Time.deltaTime;
+            currentValue = Mathf.Clamp01(currentValue);
 
-            //Ease In Ease Out
-            float easedT = t* t* (3f - 2f * t);
+            // Apply easing (ease-in/out)
+            float easedValue = currentValue * currentValue * (3f - 2f * currentValue); // smoothstep
 
-            splineExtrude.Range = new Vector2(0, Mathf.Lerp(start, end, easedT));
+            // Update SplineExtrude
+            float finalRange = Mathf.Lerp(startValue, endValue, easedValue);
+            splineExtrude.Range = new Vector2(0, finalRange);
             splineExtrude.Rebuild();
-            yield return null;
+
+            // Update SplineAnimate manually
+            splineAnimator.ElapsedTime = easedValue * animationDuration;
         }
-
-        isGrowing = false;
-        splineAnimator.Pause();
     }
-
-    private IEnumerator WaitForAnimation()
-    {
-        while (isGrowing)
-        {
-            yield return null;
-        }
-
-        StartCoroutine(GrowUnGrowVine(1f, 0f));
-    }
-
-
 }
-
