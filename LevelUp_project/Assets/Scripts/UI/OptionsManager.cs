@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class OptionsManager : MonoBehaviour
@@ -89,6 +90,7 @@ public class OptionsManager : MonoBehaviour
     //Método para cerrar el menú de opciones
     public void CloseMenu()
     {
+        GamepadOptionsManager.instance.canNavigate = false; // Desactivar la navegación del gamepad
         gameObject.SetActive(false); // Desactivar el menú de opciones
     }
 
@@ -98,6 +100,8 @@ public class OptionsManager : MonoBehaviour
         gameObject.SetActive(true); // Activar el menú de opciones
         AdjustButtons(); // Ajustar los botones del panel de opciones
         SetSliders(); // Establecer los sliders al valor actual
+        GamepadOptionsManager.instance.InitializeButtons(); // Inicializar los botones del menú de opciones
+        GamepadOptionsManager.instance.canNavigate = true; // Permitir la navegación del gamepad
     }
 
     //Método para obtener si el menú de opciones está abierto
