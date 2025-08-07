@@ -4,7 +4,7 @@ using UnityEngine.Splines;
 public class GrowingPlatformTrigger : MonoBehaviour
 {
     [Tooltip("Duration in seconds for full grow or shrink")]
-    [SerializeField] private float timeToGrowUngrow = 2f;
+    [SerializeField] private float timeToGrowUngrow = 4f;
 
     [Header("Spline references")]
     [SerializeField] private SplineAnimate splineAnimator;
@@ -14,7 +14,11 @@ public class GrowingPlatformTrigger : MonoBehaviour
     [SerializeField] private float startValue = 0f;
     [SerializeField] private float endValue = 1f;
 
-    private float currentValue = 0f; // Normalized progress (0 to 1)
+    [Header("Custom growth curves")]
+    [SerializeField] private AnimationCurve extrusionCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+    [SerializeField] private AnimationCurve animationCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+
+    private float currentValue = 0f;
     private bool isGrowing = false;
 
     private float animationDuration => splineAnimator.Duration;
@@ -40,22 +44,22 @@ public class GrowingPlatformTrigger : MonoBehaviour
         float direction = isGrowing ? 1f : -1f;
         float speed = 1f / timeToGrowUngrow;
 
-        // Only update while within valid range
         if ((isGrowing && currentValue < 1f) || (!isGrowing && currentValue > 0f))
         {
             currentValue += direction * speed * Time.deltaTime;
             currentValue = Mathf.Clamp01(currentValue);
 
-            // Apply easing (ease-in/out)
-            float easedValue = currentValue * currentValue * (3f - 2f * currentValue); // smoothstep
+            // Eased values
+            float extrusionValue = extrusionCurve.Evaluate(currentValue);
+            float animationValue = animationCurve.Evaluate(currentValue);
 
-            // Update SplineExtrude
-            float finalRange = Mathf.Lerp(startValue, endValue, easedValue);
+            // Update SplineExtrude (tallo)
+            float finalRange = Mathf.Lerp(startValue, endValue, extrusionValue);
             splineExtrude.Range = new Vector2(0, finalRange);
             splineExtrude.Rebuild();
 
-            // Update SplineAnimate manually
-            splineAnimator.ElapsedTime = easedValue * animationDuration;
+            // Update SplineAnimate (hoja)
+            splineAnimator.ElapsedTime = animationValue * animationDuration;
         }
     }
 }
